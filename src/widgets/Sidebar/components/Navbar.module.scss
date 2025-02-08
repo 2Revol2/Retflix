@@ -1,0 +1,29 @@
+.list {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.link,
+.active {
+  color: var(--title);
+  transition: all 0.2s ease-out;
+  &:hover {
+    color: var(--hover);
+  }
+  div {
+    display: flex;
+    gap: 0.625rem;
+  }
+  span,
+  p {
+    font-size: 1.125rem;
+  }
+}
+.divider {
+  background-color: var(--border);
+}
+.active {
+  color: var(--hover);
+}

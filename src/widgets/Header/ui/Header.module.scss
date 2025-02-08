@@ -1,0 +1,52 @@
+.header {
+  background-color: var(--background);
+  display: flex;
+  align-items: center;
+}
+.title {
+  color: var(--logo);
+  cursor: pointer;
+  font-size: 1.875rem;
+  flex-shrink: 0;
+  transition: all .3s ease;
+  &:hover{
+    color: var(--hover);
+  }
+}
+.inputWrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+}
+.search {
+  outline: none;
+  border: 0.0625rem solid var(--secondary-background);
+  padding: 0.625rem;
+  border-radius: 1.25rem;
+  width: 25rem;
+  font-size: 1rem;
+  color: var(--text);
+  background-color: var(--secondary-background);
+  &:focus {
+    border: 0.0625rem solid var(--border);
+  }
+}
+.iconWrapper {
+  background-color: var(--secondary-background);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+  padding: 0.125rem;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--hover);
+    border: 1px solid var(--border);
+  }
+}
+.searchIcon {
+  font-size: 2.1875rem;
+  color: var(--text);
+}

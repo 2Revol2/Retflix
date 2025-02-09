@@ -8,6 +8,7 @@ type SidebarProps = {
 };
 export const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
   const isMobile = useMobile(600);
+
   return (
     <Layout.Sider
       collapsed={isOpen}

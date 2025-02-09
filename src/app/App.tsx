@@ -12,6 +12,7 @@ export const App = () => {
         style={{
           minHeight: "100vh",
           backgroundColor: "#000000",
+          overflowX: 'hidden'
         }}
       >
         <Header isOpen={isOpen} setIsOpen={setIsOpen} />

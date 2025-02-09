@@ -12,8 +12,8 @@ export const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
   return (
     <Layout.Sider
       collapsed={isOpen}
-      width={isMobile ? "100%" : 250}
-      className={s.sidebar}
+      width={isMobile ? (isOpen ? "40px" : "100%") : 250}
+      className={isMobile ? (isOpen ? s.sidebarMobile : s.sidebar) : s.sidebar}
     >
       <Navbar setIsOpen={setIsOpen} isOpen={isOpen} />
     </Layout.Sider>

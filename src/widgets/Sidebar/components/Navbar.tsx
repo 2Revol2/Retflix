@@ -20,7 +20,7 @@ export const Navbar = ({ isOpen, setIsOpen }: NavbarProps) => {
               onClick={() => setIsOpen(true)}
               to={item.url}
             >
-              <div>
+              <div className={s.linkWrapper}>
                 <span className={isOpen ? s.icon : ""}>{item.icon}</span>{" "}
                 <p>{!isOpen && item.title}</p>
               </div>
@@ -39,7 +39,7 @@ export const Navbar = ({ isOpen, setIsOpen }: NavbarProps) => {
               onClick={() => setIsOpen(true)}
               to={item.url}
             >
-              <div>
+              <div className={s.linkWrapper}>
                 <span className={isOpen ? s.icon : ""}>{item.icon}</span>
                 <p>{!isOpen && item.title}</p>
               </div>

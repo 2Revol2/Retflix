@@ -73,13 +73,6 @@
   .search.searchOpen {
     display: inline-block;
   }
-  .iconWrapper {
-    width: 2rem;
-    height: 2rem;
-  }
-  .searchIcon {
-    font-size: 25px;
-  }
   .search {
     width: 10rem;
     padding: 0.4375rem;
@@ -90,9 +83,7 @@
     font-size: 1.5rem;
   }
   .search {
-    width: 9rem;
-    padding: 0.3125rem;
-  }
+    width: 9rem;}
   .header {
     padding: 0 0.625rem !important;
   }
@@ -100,6 +91,4 @@
     height: 1.875rem;
     width: 1.875rem;
   }
-}
-@media (max-width: 600px) {
 }

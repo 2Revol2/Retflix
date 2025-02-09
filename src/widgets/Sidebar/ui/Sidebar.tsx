@@ -6,7 +6,7 @@ type SidebarProps = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
-export const Sidebar = ({ isOpen }: SidebarProps) => {
+export const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
   const isMobile = useMobile(600);
   return (
     <Layout.Sider
@@ -14,7 +14,7 @@ export const Sidebar = ({ isOpen }: SidebarProps) => {
       width={isMobile ? "100%" : 250}
       className={s.sidebar}
     >
-      <Navbar isOpen={isOpen} />
+      <Navbar setIsOpen={setIsOpen} isOpen={isOpen} />
     </Layout.Sider>
   );
 };

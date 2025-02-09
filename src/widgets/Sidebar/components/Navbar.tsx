@@ -4,11 +4,10 @@ import s from "./Navbar.module.scss";
 import { Divider } from "antd";
 type NavbarProps = {
   isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const Navbar = ({ isOpen }: NavbarProps) => {
-
-
+export const Navbar = ({ isOpen, setIsOpen }: NavbarProps) => {
   return (
     <>
       <ul className={s.list}>
@@ -18,6 +17,7 @@ export const Navbar = ({ isOpen }: NavbarProps) => {
               className={({ isActive }) =>
                 isActive ? `${s.active}` : `${s.link}`
               }
+              onClick={() => setIsOpen(true)}
               to={item.url}
             >
               <div>
@@ -36,6 +36,7 @@ export const Navbar = ({ isOpen }: NavbarProps) => {
               className={({ isActive }) =>
                 isActive ? `${s.active}` : `${s.link}`
               }
+              onClick={() => setIsOpen(true)}
               to={item.url}
             >
               <div>

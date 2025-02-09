@@ -1,5 +1,5 @@
 import { useMobile } from "@/shared/lib/hooks/useMobile";
-import { Navbar } from "../components/Navbar";
+import { Navbar } from "../../components/Navbar/Navbar";
 import s from "./Sidebar.module.scss";
 import { Layout } from "antd";
 type SidebarProps = {

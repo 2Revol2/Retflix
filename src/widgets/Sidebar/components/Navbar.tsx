@@ -2,12 +2,18 @@ import { SIDEBAR_MENU_BOTTOM, SIDEBAR_MENU_TOP } from "@/shared/const/menu";
 import { NavLink } from "react-router-dom";
 import s from "./Navbar.module.scss";
 import { Divider } from "antd";
-export const Navbar = () => {
+type NavbarProps = {
+  isOpen: boolean;
+};
+
+export const Navbar = ({ isOpen }: NavbarProps) => {
+
+
   return (
     <>
       <ul className={s.list}>
         {SIDEBAR_MENU_TOP.map((item) => (
-          <li key={item.title}>
+          <li className={isOpen ? s.listItem : ""} key={item.title}>
             <NavLink
               className={({ isActive }) =>
                 isActive ? `${s.active}` : `${s.link}`
@@ -15,7 +21,8 @@ export const Navbar = () => {
               to={item.url}
             >
               <div>
-                <span>{item.icon}</span> <p>{item.title}</p>
+                <span className={isOpen ? s.icon : ""}>{item.icon}</span>{" "}
+                <p>{!isOpen && item.title}</p>
               </div>
             </NavLink>
           </li>
@@ -24,7 +31,7 @@ export const Navbar = () => {
       <Divider className={s.divider} />
       <ul className={s.list}>
         {SIDEBAR_MENU_BOTTOM.map((item) => (
-          <li key={item.title}>
+          <li className={isOpen ? s.listItem : ""} key={item.title}>
             <NavLink
               className={({ isActive }) =>
                 isActive ? `${s.active}` : `${s.link}`
@@ -32,7 +39,8 @@ export const Navbar = () => {
               to={item.url}
             >
               <div>
-                <span>{item.icon}</span> <p>{item.title}</p>
+                <span className={isOpen ? s.icon : ""}>{item.icon}</span>
+                <p>{!isOpen && item.title}</p>
               </div>
             </NavLink>
           </li>

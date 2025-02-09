@@ -3,7 +3,9 @@ import { Sidebar } from "@/widgets/Sidebar";
 import { Layout } from "antd";
 import { AppRouter } from "./providers/routerProvider";
 import { Content } from "antd/es/layout/layout";
+import { useState } from "react";
 export const App = () => {
+  const [isOpen, setIsOpen] = useState(true);
   return (
     <div>
       <Layout
@@ -12,14 +14,14 @@ export const App = () => {
           backgroundColor: "#000000",
         }}
       >
-        <Header />
+        <Header isOpen={isOpen} setIsOpen={setIsOpen} />
         <Layout
           style={{
             backgroundColor: "#000000",
             padding: "0 5px",
           }}
         >
-          <Sidebar />
+          <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
           <Content
             style={{
               margin: "0 10px",
@@ -27,7 +29,7 @@ export const App = () => {
               padding: "10px",
               borderRadius: "5px",
               overflow: "auto",
-              height: 'calc(100vh - 64px)'
+              height: "calc(100vh - 64px)",
             }}
           >
             <AppRouter />

@@ -1,10 +1,15 @@
 .list {
-  margin-top: 5px;
+  margin-top: .3125rem;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: .9375rem;
+  justify-content: center;
 }
-
+.listItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .link,
 .active {
   color: var(--title);
@@ -27,3 +32,7 @@
 .active {
   color: var(--hover);
 }
+.icon svg {
+  font-size: 1.5625rem;
+}
+

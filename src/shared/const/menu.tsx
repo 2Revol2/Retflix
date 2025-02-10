@@ -13,49 +13,58 @@ import { FaTv } from "react-icons/fa6";
 
 export const SIDEBAR_MENU_TOP = [
   {
-    title: "Топ 100 фильмов",
+    title: "Популярные фильмы",
     icon: <GiStarsStack />,
-    url: '/popular/top100'
+    url: "/popular",
+    value: "TOP_POPULAR_MOVIES",
   },
   {
     title: "Топ 250 фильмов",
     icon: <WiStars />,
-    url: '/popular/top250'
+    url: "/popular/top250",
+    value: "TOP_250_MOVIES",
   },
   {
     title: "Вампиры",
     icon: <GiVampireCape />,
-     url: '/vampire'
+    url: "/vampire",
+    value: "VAMPIRE_THEME",
   },
   {
     title: "Комиксы",
     icon: <MdMenuBook />,
-      url: '/comics'
+    url: "/comics",
+    value: "COMICS_THEME",
   },
   {
     title: "Семейный",
     icon: <MdFamilyRestroom />,
-     url: '/family'
+    url: "/family",
+    value: "FAMILY",
   },
   {
     title: "Романтика",
     icon: <FaHeart />,
-    url: '/romantic'
+    url: "/romantic",
+    value: "LOVE_THEME",
   },
   {
     title: "Зомби",
     icon: <GiShamblingZombie />,
-      url: '/zombie'
+    url: "/zombie",
+    value: "ZOMBIE_THEME",
   },
   {
     title: "Катастрофы",
     icon: <GiNuclearBomb />,
-      url: '/catastrophe'
+    url: "/catastrophe",
+    value: 'CATASTROPHE_THEME'
   },
   {
     title: "Популярные сериалы",
     icon: <BiCameraMovie />,
-    url: '/popular/serials'
+    url: "/popular/serials",
+    value: 'POPULAR_SERIES'
   },
 ];
 
@@ -63,16 +72,16 @@ export const SIDEBAR_MENU_BOTTOM = [
   {
     title: "Фильмы",
     icon: <BiMoviePlay />,
-    url: '/films'
+    url: "/films",
   },
   {
     title: "Сериалы",
     icon: <FaTv />,
-     url: '/serials'
+    url: "/serials",
   },
   {
     title: "Мультфильмы",
     icon: <GiMagicHat />,
-     url: '/cartoon'
+    url: "/cartoon",
   },
 ];

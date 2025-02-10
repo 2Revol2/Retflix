@@ -1,0 +1,48 @@
+.cardWrapper {
+  max-width: 15.625rem;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.movieInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3125rem;
+  .image {
+    max-width: 15rem;
+  }
+  .name {
+    color: var(--title);
+    font-size: 0.875rem;
+    text-align: center;
+  }
+}
+.rate {
+    font-size: .75rem;
+    color: var(--text);
+}
+
+@media (max-width: 860px) {
+  .cardWrapper {
+    max-width: 200px;
+    .image {
+      max-width: 200px;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+    .cardWrapper {
+      max-width: 100%;
+      .image {
+        max-width: 100%;
+      }
+    }
+  }
+  

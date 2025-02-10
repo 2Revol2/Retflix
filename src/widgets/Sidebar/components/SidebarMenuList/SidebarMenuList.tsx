@@ -10,7 +10,6 @@ type SidebarMenuListProps = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
-
 export const SidebarMenuList = ({
   List,
   isOpen,
@@ -28,7 +27,7 @@ export const SidebarMenuList = ({
             to={item.url}
           >
             <div className={isOpen ? s.linkWrapperOpen : s.linkWrapper}>
-              <span className={isOpen ? s.icon : ""}>{item.icon}</span>{" "}
+              <span className={isOpen ? s.icon : ""}>{item.icon}</span>
               <p>{!isOpen && item.title}</p>
             </div>
           </NavLink>

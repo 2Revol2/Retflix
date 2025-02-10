@@ -1,15 +1,17 @@
-export type Movies = {
+export type Movie = {
   countries: { country: string }[];
   description: string;
   genres: { genre: string }[];
   posterUrl: string;
   nameRu: string;
+  nameEn: string | null;
   year: number;
-  ratingImdb: string | null;
-  ratingKinopoisk: string | null;
+  ratingImdb: number | undefined;
+  ratingKinopoisk: number | undefined;
+  kinopoiskId: number;
 };
 export type MoviesResponse = {
   total: number;
-  items: Movies[];
+  items: Movie[];
   totalPages: number;
 };

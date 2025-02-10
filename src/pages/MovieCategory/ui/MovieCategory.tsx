@@ -14,9 +14,14 @@ export const MovieCategory = observer(() => {
   const movieType = SIDEBAR_MENU_TOP.find(
     (item) => item.url === location.pathname
   );
+  
   useEffect(() => {
     getMoviesCollectionsAction(movieType?.value, page);
   }, [location.pathname, movieType?.value, page]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [location]);
 
   const paginationHandler: PaginationProps["onChange"] = (page) => {
     setPage(page);

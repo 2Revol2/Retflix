@@ -10,13 +10,13 @@ type MoviesListProps = {
 };
 export const MoviesList = ({ movies, movieType }: MoviesListProps) => {
   return (
-    <>
+    <div>
       <h2  className={s.moviesCategory}>{movieType?.title}</h2>
       <div className={s.list}>
         {movies.map((movie) => (
           <MoviesBanner key={movie.kinopoiskId} movie={movie} />
         ))}
       </div>
-    </>
+    </div>
   );
 };

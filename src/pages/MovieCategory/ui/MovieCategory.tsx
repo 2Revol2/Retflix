@@ -3,10 +3,10 @@ import { movieCategoryStore } from "../store/MovieCategoryStore";
 import { useEffect, useState } from "react";
 import { SIDEBAR_MENU_TOP } from "@/shared/const/menu";
 import { useLocation } from "react-router-dom";
-import { Spin } from "antd";
+import { Pagination, PaginationProps, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { MoviesList } from "@/widgets/MoviesList/MoviesList";
-
+import s from "./MovieCategory.module.scss";
 export const MovieCategory = observer(() => {
   const [page, setPage] = useState(1);
   const { movieCategoryData, getMoviesCollectionsAction } = movieCategoryStore;
@@ -17,8 +17,10 @@ export const MovieCategory = observer(() => {
   useEffect(() => {
     getMoviesCollectionsAction(movieType?.value, page);
   }, [location.pathname, movieType?.value, page]);
-  console.log(setPage);
 
+  const paginationHandler: PaginationProps["onChange"] = (page) => {
+    setPage(page);
+  };
   return (
     <>
       <div style={{ textAlign: "center" }}>
@@ -41,7 +43,7 @@ export const MovieCategory = observer(() => {
           )}
       </div>
 
-      <div>
+      <div className={s.movieWrapper}>
         {movieCategoryData?.state === "fulfilled" &&
           movieCategoryData.value.items.length > 0 && (
             <MoviesList
@@ -49,6 +51,21 @@ export const MovieCategory = observer(() => {
               movieType={movieType}
             />
           )}
+        <Pagination
+          showQuickJumper={false}
+          showSizeChanger={false}
+          className={s.pagination}
+          total={
+            movieCategoryData?.state === "fulfilled"
+              ? movieCategoryData.value.total
+              : 0
+          }
+          hideOnSinglePage={true}
+          current={page}
+          pageSize={20}
+          responsive
+          onChange={paginationHandler}
+        />
       </div>
     </>
   );

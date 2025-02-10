@@ -21,7 +21,7 @@ export const SIDEBAR_MENU_TOP = [
   {
     title: "Топ 250 фильмов",
     icon: <WiStars />,
-    url: "/popular/top250",
+    url: "/top250",
     value: "TOP_250_MOVIES",
   },
   {

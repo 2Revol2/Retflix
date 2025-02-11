@@ -1,0 +1,48 @@
+.mainPage {
+  padding: 0 15px;
+}
+
+.carouselWrapper {
+  max-width: 93.75rem;
+  margin: 0 auto;
+  width: 100%;
+}
+.title {
+  margin-bottom: 0.625rem;
+  font-size: 1.5rem;
+  a {
+    color: var(--title);
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      color: var(--hover);
+    }
+  }
+}
+.image {
+  width: 100%;
+  max-width: 240px;
+}
+.imageWrapper {
+  transition: all 0.2s ease;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+@media (max-width: 1100px) {
+  .image {
+    max-width: 12.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .image {
+    max-width: 15rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .image {
+    max-width: 100%;
+  }
+}

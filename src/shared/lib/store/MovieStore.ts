@@ -3,21 +3,29 @@ import { MoviesResponse } from "@/shared/api/moviesApi/types";
 import { makeAutoObservable } from "mobx";
 import { fromPromise, IPromiseBasedObservable } from "mobx-utils";
 
-class MovieCategoryStore {
+export enum MovieCategoryEnum {
+  General = "movieCategoryData",
+  Popular = "popularMoviesData",
+  Best = "bestMoviesData",
+}
+
+class MovieStore {
   constructor() {
     makeAutoObservable(this);
   }
   movieCategoryData?: IPromiseBasedObservable<MoviesResponse>;
-
+  popularMoviesData?: IPromiseBasedObservable<MoviesResponse>;
+  bestMoviesData?: IPromiseBasedObservable<MoviesResponse>;
   getMoviesCollectionsAction = async (
+    category: MovieCategoryEnum,
     type: string | undefined,
     page: number
   ) => {
     try {
-      this.movieCategoryData = fromPromise(getMoviesCollections(type, page));
+      this[category] = fromPromise(getMoviesCollections(type, page));
     } catch (error) {
       console.log(error);
     }
   };
 }
-export const movieCategoryStore = new MovieCategoryStore();
+export const movieStore = new MovieStore();

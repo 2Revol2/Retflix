@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { movieCategoryStore } from "../store/MovieCategoryStore";
+import { movieStore } from "../../../shared/lib/store/MovieStore";
 import { useEffect, useState } from "react";
 import { SIDEBAR_MENU_TOP } from "@/shared/const/menu";
 import { useLocation } from "react-router-dom";
@@ -7,16 +7,21 @@ import { Pagination, PaginationProps, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { MoviesList } from "@/widgets/MoviesList/MoviesList";
 import s from "./MovieCategory.module.scss";
+import { MovieCategoryEnum } from "../../../shared/lib/store/MovieStore";
 export const MovieCategory = observer(() => {
   const [page, setPage] = useState(1);
-  const { movieCategoryData, getMoviesCollectionsAction } = movieCategoryStore;
+  const { movieCategoryData, getMoviesCollectionsAction } = movieStore;
   const location = useLocation();
   const movieType = SIDEBAR_MENU_TOP.find(
     (item) => item.url === location.pathname
   );
-  
+
   useEffect(() => {
-    getMoviesCollectionsAction(movieType?.value, page);
+    getMoviesCollectionsAction(
+      MovieCategoryEnum.General,
+      movieType?.value,
+      page
+    );
   }, [location.pathname, movieType?.value, page]);
 
   useEffect(() => {

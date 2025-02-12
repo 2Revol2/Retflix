@@ -58,13 +58,13 @@ export const SIDEBAR_MENU_TOP = [
     title: "Катастрофы",
     icon: <GiNuclearBomb />,
     url: "/catastrophe",
-    value: 'CATASTROPHE_THEME'
+    value: "CATASTROPHE_THEME",
   },
   {
     title: "Популярные сериалы",
     icon: <BiCameraMovie />,
     url: "/popular/serials",
-    value: 'POPULAR_SERIES'
+    value: "POPULAR_SERIES",
   },
 ];
 
@@ -73,15 +73,18 @@ export const SIDEBAR_MENU_BOTTOM = [
     title: "Фильмы",
     icon: <BiMoviePlay />,
     url: "/films",
+    value: "ALL",
   },
   {
     title: "Сериалы",
     icon: <FaTv />,
     url: "/serials",
+    value: "TV_SERIES",
   },
   {
     title: "Мультфильмы",
     icon: <GiMagicHat />,
     url: "/cartoon",
+    value: "ALL",
   },
 ];

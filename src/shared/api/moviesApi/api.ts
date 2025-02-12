@@ -13,3 +13,22 @@ export const getMoviesCollections = async (
       },
     })
   ).data;
+
+export const getFilms = async (
+  countries?: number,
+  genres?: number,
+  order: string = "NUM_VOTE",
+  type?: string,
+  page: number = 1
+) =>
+  (
+    await baseInstance.get<MoviesResponse>("v2.2/films", {
+      params: {
+        countries,
+        genres,
+        order,
+        type,
+        page,
+      },
+    })
+  ).data;

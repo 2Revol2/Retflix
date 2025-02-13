@@ -12,7 +12,7 @@ export const MoviesMain = observer(() => {
   const [page, setPage] = useState(1);
   const { moviesData, getFilmsAction } = movieStore;
   const location = useLocation();
-  
+
   const movieType = SIDEBAR_MENU_BOTTOM.find(
     (item) => item.url === location.pathname
   );
@@ -24,7 +24,7 @@ export const MoviesMain = observer(() => {
       cartoonsId,
       "NUM_VOTE",
       movieType?.value,
-      1
+      page
     );
   }, [location.pathname, movieType?.value, page]);
 

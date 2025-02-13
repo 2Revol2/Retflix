@@ -73,7 +73,7 @@ export const SIDEBAR_MENU_BOTTOM = [
     title: "Фильмы",
     icon: <BiMoviePlay />,
     url: "/films",
-    value: "ALL",
+    value: "FILM",
   },
   {
     title: "Сериалы",
@@ -85,6 +85,6 @@ export const SIDEBAR_MENU_BOTTOM = [
     title: "Мультфильмы",
     icon: <GiMagicHat />,
     url: "/cartoon",
-    value: "ALL",
+    value: "FILM",
   },
 ];

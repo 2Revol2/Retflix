@@ -10,6 +10,7 @@ export enum MovieCategoryEnum {
   Serials = "serialData",
   Cartoons = "cartoonsData",
   Films = "filmsData",
+  Movies = "moviesData",
 }
 
 class MovieStore {
@@ -22,6 +23,7 @@ class MovieStore {
   bestMoviesData?: IPromiseBasedObservable<MoviesResponse>;
 
   // films
+  moviesData?: IPromiseBasedObservable<MoviesResponse>;
   serialData?: IPromiseBasedObservable<MoviesResponse>;
   cartoonsData?: IPromiseBasedObservable<MoviesResponse>;
   filmsData?: IPromiseBasedObservable<MoviesResponse>;

@@ -1,0 +1,18 @@
+.skeletonWrapper {
+  max-width: 1500px;
+  margin-top: 20px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+.skeletonMainWrapper {
+  display: flex;
+  justify-content: center;
+  
+}
+.carouselSkeleton {
+    display: flex;
+    gap: 10px; 
+}

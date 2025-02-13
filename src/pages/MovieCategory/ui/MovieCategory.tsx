@@ -3,11 +3,12 @@ import { movieStore } from "../../../shared/lib/store/MovieStore";
 import { useEffect, useState } from "react";
 import { SIDEBAR_MENU_TOP } from "@/shared/const/menu";
 import { useLocation } from "react-router-dom";
-import { Pagination, PaginationProps, Spin } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
+import { Pagination, PaginationProps } from "antd";
+
 import { MoviesList } from "@/widgets/MoviesList/MoviesList";
 import s from "./MovieCategory.module.scss";
 import { MovieCategoryEnum } from "../../../shared/lib/store/MovieStore";
+import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
 export const MovieCategory = observer(() => {
   const [page, setPage] = useState(1);
   const { movieCategoryData, getMoviesCollectionsAction } = movieStore;
@@ -35,14 +36,7 @@ export const MovieCategory = observer(() => {
     <>
       <div style={{ textAlign: "center" }}>
         {movieCategoryData?.state === "pending" && (
-          <Spin
-            indicator={
-              <LoadingOutlined
-                style={{ fontSize: 48, color: "var(--logo)" }}
-                spin
-              />
-            }
-          />
+          <Skeleton count={20} type="category" />
         )}
 
         {movieCategoryData?.state === "fulfilled" &&

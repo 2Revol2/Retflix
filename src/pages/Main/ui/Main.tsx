@@ -5,6 +5,8 @@ import { MovieCategoryEnum } from "@/shared/lib/store/MovieStore";
 import { SIDEBAR_MENU_BOTTOM, SIDEBAR_MENU_TOP } from "@/shared/const/menu";
 import s from "./Main.module.scss";
 import { Carousel } from "@/features/Carousel";
+import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
+
 export const Main = observer(() => {
   const {
     popularMoviesData,
@@ -88,15 +90,17 @@ export const Main = observer(() => {
 
   return (
     <div className={s.mainPage}>
-      {moviesCollectionsData.map(
-        (movie) =>
-          movie.data?.state === "fulfilled" && (
-            <Carousel
-              title={movie.title}
-              url={movie.menu.url}
-              list={movie.data.value.items}
-            />
-          )
+      {moviesCollectionsData.map((movie) =>
+        movie.data?.state === 'fulfilled' ? (
+          <Carousel
+            key={movie.title}
+            title={movie.title}
+            url={movie.menu.url}
+            list={movie.data.value.items}
+          />
+        ) : (
+          <Skeleton count={5} type="main" />
+        )
       )}
     </div>
   );

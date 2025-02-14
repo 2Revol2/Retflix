@@ -63,7 +63,7 @@ export const Main = observer(() => {
 
     getFilmsAction(
       MovieCategoryEnum.Cartoons,
-      undefined,
+      null,
       18,
       "NUM_VOTE",
       SIDEBAR_MENU_BOTTOM[2].value,
@@ -72,16 +72,16 @@ export const Main = observer(() => {
 
     getFilmsAction(
       MovieCategoryEnum.Serials,
-      undefined,
-      undefined,
+      null,
+      null,
       "NUM_VOTE",
       SIDEBAR_MENU_BOTTOM[1].value,
       1
     );
     getFilmsAction(
       MovieCategoryEnum.Films,
-      undefined,
-      undefined,
+      null,
+      null,
       "NUM_VOTE",
       SIDEBAR_MENU_BOTTOM[0].value,
       1

@@ -1,5 +1,12 @@
-import { getFilms, getMoviesCollections } from "@/shared/api/moviesApi/api";
-import { MoviesResponse } from "@/shared/api/moviesApi/types";
+import {
+  getFilms,
+  getFilters,
+  getMoviesCollections,
+} from "@/shared/api/moviesApi/api";
+import {
+  genresAndCountriesResponce,
+  MoviesResponse,
+} from "@/shared/api/moviesApi/types";
 import { makeAutoObservable } from "mobx";
 import { fromPromise, IPromiseBasedObservable } from "mobx-utils";
 
@@ -28,6 +35,9 @@ class MovieStore {
   cartoonsData?: IPromiseBasedObservable<MoviesResponse>;
   filmsData?: IPromiseBasedObservable<MoviesResponse>;
 
+  // filters
+  filtersData?: IPromiseBasedObservable<genresAndCountriesResponce>;
+
   getMoviesCollectionsAction = async (
     category: MovieCategoryEnum,
     type: string | undefined,
@@ -42,8 +52,8 @@ class MovieStore {
 
   getFilmsAction = async (
     category: MovieCategoryEnum,
-    countries?: number,
-    genres?: number,
+    countries: number | null,
+    genres: number | null,
     order?: string,
     type?: string,
     page?: number
@@ -52,6 +62,14 @@ class MovieStore {
       this[category] = fromPromise(
         getFilms(countries, genres, order, type, page)
       );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  getFiltersAction = async () => {
+    try {
+      this.filtersData = fromPromise(getFilters());
     } catch (error) {
       console.log(error);
     }

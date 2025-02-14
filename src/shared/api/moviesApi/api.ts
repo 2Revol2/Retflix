@@ -1,5 +1,5 @@
 import { baseInstance } from "../base";
-import { MoviesResponse } from "./types";
+import { genresAndCountriesResponce, MoviesResponse } from "./types";
 
 export const getMoviesCollections = async (
   type: string | undefined,
@@ -15,8 +15,8 @@ export const getMoviesCollections = async (
   ).data;
 
 export const getFilms = async (
-  countries?: number,
-  genres?: number,
+  countries: number | null,
+  genres: number | null,
   order: string = "NUM_VOTE",
   type?: string,
   page: number = 1
@@ -32,3 +32,7 @@ export const getFilms = async (
       },
     })
   ).data;
+
+export const getFilters = async () =>
+  (await baseInstance.get<genresAndCountriesResponce>("v2.2/films/filters"))
+    .data;

@@ -15,3 +15,14 @@ export type MoviesResponse = {
   items: Movie[];
   totalPages: number;
 };
+
+export type genresAndCountriesResponce = {
+  genres: {
+    id: number;
+    genre: string;
+  }[];
+  countries: {
+    id: number;
+    country: string;
+  }[];
+};

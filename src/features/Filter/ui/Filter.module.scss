@@ -1,0 +1,14 @@
+.filters {
+  display: flex;
+  gap: 20px;
+}
+.select {
+  width: 300px;
+}
+
+@media (max-width: 750px) {
+  .filters {
+    flex-direction: column;
+    gap: 5px;
+  }
+}

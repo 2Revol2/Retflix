@@ -9,6 +9,7 @@ import s from "./MoviesMain.module.scss";
 import { MovieCategoryEnum } from "../../../shared/lib/store/MovieStore";
 import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
 import { Filter } from "@/features/Filter";
+import { Title } from "@/shared/ui/Title/Title";
 
 export const MoviesMain = observer(() => {
   const { moviesData, filtersData, getFilmsAction, getFiltersAction } =
@@ -88,6 +89,7 @@ export const MoviesMain = observer(() => {
       </div>
 
       <div className={s.movieWrapper}>
+        <Title>{movieType?.title}</Title>
         {filtersData?.state === "fulfilled" && (
           <Filter
             orderList={orderList}
@@ -98,7 +100,7 @@ export const MoviesMain = observer(() => {
         )}
         {moviesData?.state === "fulfilled" &&
           moviesData.value.items.length > 0 && (
-            <MoviesList movies={moviesData.value.items} movieType={movieType} />
+            <MoviesList movies={moviesData.value.items} />
           )}
         <Pagination
           showQuickJumper={false}

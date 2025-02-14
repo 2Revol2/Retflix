@@ -1,4 +1,9 @@
 .pagination {
-    justify-content: center;
+  justify-content: center;
 }
-  
+
+.movieWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

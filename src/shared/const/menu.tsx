@@ -15,7 +15,7 @@ export const SIDEBAR_MENU_TOP = [
   {
     title: "Популярные фильмы",
     icon: <GiStarsStack />,
-    url: "/popular",
+    url: "/popular/films",
     value: "TOP_POPULAR_MOVIES",
   },
   {
@@ -63,7 +63,7 @@ export const SIDEBAR_MENU_TOP = [
   {
     title: "Популярные сериалы",
     icon: <BiCameraMovie />,
-    url: "/popular/serials",
+    url: "/poppular/serials",
     value: "POPULAR_SERIES",
   },
 ];

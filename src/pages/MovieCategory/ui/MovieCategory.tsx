@@ -9,6 +9,7 @@ import { MoviesList } from "@/widgets/MoviesList/MoviesList";
 import s from "./MovieCategory.module.scss";
 import { MovieCategoryEnum } from "../../../shared/lib/store/MovieStore";
 import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
+import { Title } from "@/shared/ui/Title/Title";
 export const MovieCategory = observer(() => {
   const [page, setPage] = useState(1);
   const { movieCategoryData, getMoviesCollectionsAction } = movieStore;
@@ -48,12 +49,10 @@ export const MovieCategory = observer(() => {
       </div>
 
       <div className={s.movieWrapper}>
+        <Title>{movieType?.title}</Title>
         {movieCategoryData?.state === "fulfilled" &&
           movieCategoryData.value.items.length > 0 && (
-            <MoviesList
-              movies={movieCategoryData.value.items}
-              movieType={movieType}
-            />
+            <MoviesList movies={movieCategoryData.value.items} />
           )}
         <Pagination
           showQuickJumper={false}

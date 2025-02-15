@@ -18,8 +18,9 @@ export const getFilms = async (
   countries: number | null,
   genres: number | null,
   order: string = "NUM_VOTE",
-  type?: string,
-  page: number = 1
+  year: number | null,
+  page: number = 1,
+  type?: string
 ) =>
   (
     await baseInstance.get<MoviesResponse>("v2.2/films", {
@@ -29,6 +30,8 @@ export const getFilms = async (
         order,
         type,
         page,
+        yearFrom: year,
+        yearTo: year,
       },
     })
   ).data;

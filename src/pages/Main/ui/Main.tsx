@@ -65,33 +65,36 @@ export const Main = observer(() => {
       MovieCategoryEnum.Cartoons,
       null,
       18,
+      null,
+      1,
       "NUM_VOTE",
-      SIDEBAR_MENU_BOTTOM[2].value,
-      1
+      SIDEBAR_MENU_BOTTOM[2].value
     );
 
     getFilmsAction(
       MovieCategoryEnum.Serials,
       null,
       null,
+      null,
+      1,
       "NUM_VOTE",
-      SIDEBAR_MENU_BOTTOM[1].value,
-      1
+      SIDEBAR_MENU_BOTTOM[1].value
     );
     getFilmsAction(
       MovieCategoryEnum.Films,
       null,
       null,
+      null,
+      1,
       "NUM_VOTE",
-      SIDEBAR_MENU_BOTTOM[0].value,
-      1
+      SIDEBAR_MENU_BOTTOM[0].value
     );
   }, []);
 
   return (
     <div className={s.mainPage}>
       {moviesCollectionsData.map((movie) =>
-        movie.data?.state === 'fulfilled' ? (
+        movie.data?.state === "fulfilled" ? (
           <Carousel
             key={movie.title}
             title={movie.title}

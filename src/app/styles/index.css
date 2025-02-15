@@ -46,3 +46,11 @@
   color: var(--text) !important;
 }
 
+.ant-select-selector {
+  background-color: var(--secondary-background) !important;
+  border: var(--border) !important;
+  color: var(--text) !important;
+}
+.ant-select-selection-placeholder {
+  color: var(--text) !important;
+}

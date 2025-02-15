@@ -54,13 +54,14 @@ class MovieStore {
     category: MovieCategoryEnum,
     countries: number | null,
     genres: number | null,
+    year: number | null,
+    page: number,
     order?: string,
-    type?: string,
-    page?: number
+    type?: string
   ) => {
     try {
       this[category] = fromPromise(
-        getFilms(countries, genres, order, type, page)
+        getFilms(countries, genres, order, year, page, type)
       );
     } catch (error) {
       console.log(error);

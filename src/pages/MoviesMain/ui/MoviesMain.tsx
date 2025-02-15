@@ -20,16 +20,24 @@ export const MoviesMain = observer(() => {
     genre: null | number;
     country: null | number;
     order: string;
+    year: number | null;
   }>({
     genre: null,
     country: null,
     order: "NUM_VOTE",
+    year: null,
   });
 
   const orderList = [
     { id: "RATING", value: "За рейтингом" },
     { id: "NUM_VOTE", value: "По голосам" },
   ];
+  const yearList = [...new Array(132)].map((_, index) => {
+    return {
+      id: new Date().getFullYear() - index,
+      year: new Date().getFullYear() - index,
+    };
+  });
 
   const category =
     filtersData?.state === "fulfilled"
@@ -51,9 +59,10 @@ export const MoviesMain = observer(() => {
       MovieCategoryEnum.Movies,
       filters.country,
       cartoonsId,
+      filters.year,
+      page,
       filters.order,
-      movieType?.value,
-      page
+      movieType?.value
     );
   }, [
     location.pathname,
@@ -62,6 +71,7 @@ export const MoviesMain = observer(() => {
     filters.genre,
     filters.country,
     filters.order,
+    filters.year
   ]);
 
   useEffect(() => {
@@ -92,6 +102,7 @@ export const MoviesMain = observer(() => {
         <Title>{movieType?.title}</Title>
         {filtersData?.state === "fulfilled" && (
           <Filter
+            yearList={yearList}
             orderList={orderList}
             categories={filters}
             genresAndCountries={category}

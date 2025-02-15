@@ -1,4 +1,4 @@
-import { Select } from "antd";
+import { Button, Select } from "antd";
 import s from "./Filter.module.scss";
 
 type FilterProps = {
@@ -17,16 +17,22 @@ type FilterProps = {
       genre: null | number;
       country: null | number;
       order: string;
+      year: number | null;
     }>
   >;
   categories: {
     genre: null | number;
     country: null | number;
     order: string;
+    year: number | null;
   };
   orderList: {
     id: string;
     value: string;
+  }[];
+  yearList: {
+    id: number;
+    year: number;
   }[];
 };
 
@@ -35,6 +41,7 @@ export const Filter = ({
   setFilters,
   categories,
   orderList,
+  yearList,
 }: FilterProps) => {
   const selectGenre = (value: number) => {
     setFilters((prev) => ({ ...prev, genre: value }));
@@ -46,6 +53,20 @@ export const Filter = ({
 
   const selectSort = (value: string) => {
     setFilters((prev) => ({ ...prev, order: value }));
+  };
+
+  const selectYear = (value: number) => {
+    setFilters((prev) => ({ ...prev, year: value }));
+  };
+
+  const resetFilters = () => {
+    setFilters((prev) => ({
+      ...prev,
+      genre: null,
+      country: null,
+      order: "NUM_VOTE",
+      year: null,
+    }));
   };
   return (
     <div className={s.filters}>
@@ -93,6 +114,25 @@ export const Filter = ({
           };
         })}
       />
+
+      <Select
+        className={s.select}
+        showSearch
+        placeholder="Год"
+        optionFilterProp="label"
+        onChange={selectYear}
+        value={categories.year}
+        options={yearList.map((item) => {
+          return {
+            value: item.id,
+            label: item.year,
+          };
+        })}
+      />
+
+      <Button color="default" variant="solid" onClick={resetFilters}>
+        Сборосить фильтры
+      </Button>
     </div>
   );
 };

@@ -17,78 +17,61 @@ export const Main = observer(() => {
     getMoviesCollectionsAction,
     getFilmsAction,
   } = movieStore;
+
   const moviesCollectionsData = [
     {
+      action: "getMoviesCollectionsAction",
       title: "Популярные фильмы",
       category: MovieCategoryEnum.Popular,
       data: popularMoviesData,
       menu: SIDEBAR_MENU_TOP[0],
     },
     {
+      action: "getMoviesCollectionsAction",
       title: "Лучшие фильмы",
       category: MovieCategoryEnum.Best,
       data: bestMoviesData,
       menu: SIDEBAR_MENU_TOP[1],
     },
     {
+      action: "getFilmsAction",
       title: "Фильмы",
       category: MovieCategoryEnum.Films,
       data: filmsData,
       menu: SIDEBAR_MENU_BOTTOM[0],
     },
     {
+      action: "getFilmsAction",
       title: "Сериалы",
       category: MovieCategoryEnum.Serials,
       data: serialData,
       menu: SIDEBAR_MENU_BOTTOM[1],
     },
     {
+      action: "getFilmsAction",
       title: "Мультфильмы",
       category: MovieCategoryEnum.Cartoons,
       data: cartoonsData,
       menu: SIDEBAR_MENU_BOTTOM[2],
     },
   ];
+
   useEffect(() => {
-    getMoviesCollectionsAction(
-      MovieCategoryEnum.Popular,
-      SIDEBAR_MENU_TOP[0].value,
-      1
-    );
-    getMoviesCollectionsAction(
-      MovieCategoryEnum.Best,
-      SIDEBAR_MENU_TOP[1].value,
-      1
-    );
-
-    getFilmsAction(
-      MovieCategoryEnum.Cartoons,
-      null,
-      18,
-      null,
-      1,
-      "NUM_VOTE",
-      SIDEBAR_MENU_BOTTOM[2].value
-    );
-
-    getFilmsAction(
-      MovieCategoryEnum.Serials,
-      null,
-      null,
-      null,
-      1,
-      "NUM_VOTE",
-      SIDEBAR_MENU_BOTTOM[1].value
-    );
-    getFilmsAction(
-      MovieCategoryEnum.Films,
-      null,
-      null,
-      null,
-      1,
-      "NUM_VOTE",
-      SIDEBAR_MENU_BOTTOM[0].value
-    );
+    moviesCollectionsData.map((item) => {
+      if (item.action === "getMoviesCollectionsAction") {
+        getMoviesCollectionsAction(item.category, item.menu.value, 1);
+      } else {
+        getFilmsAction(
+          item.category,
+          null,
+          item.category === MovieCategoryEnum.Cartoons ? 18 : null,
+          null,
+          1,
+          "NUM_VOTE",
+          item.menu.value
+        );
+      }
+    });
   }, []);
 
   return (

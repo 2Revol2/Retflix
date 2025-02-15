@@ -18,9 +18,10 @@ type FilterProps = {
       country: null | number;
       order: string;
       year: number | null;
+      page: number
     }>
   >;
-  categories: {
+  filters: {
     genre: null | number;
     country: null | number;
     order: string;
@@ -39,7 +40,7 @@ type FilterProps = {
 export const Filter = ({
   genresAndCountries,
   setFilters,
-  categories,
+  filters,
   orderList,
   yearList,
 }: FilterProps) => {
@@ -76,7 +77,7 @@ export const Filter = ({
         placeholder="Сортировка"
         optionFilterProp="label"
         onChange={selectSort}
-        value={categories.order}
+        value={filters.order}
         options={orderList.map((item) => {
           return {
             value: item.id,
@@ -91,7 +92,7 @@ export const Filter = ({
         placeholder="Жанр"
         optionFilterProp="label"
         onChange={selectGenre}
-        value={categories.genre}
+        value={filters.genre}
         options={genresAndCountries.genres.map((item) => {
           return {
             value: item.id,
@@ -106,7 +107,7 @@ export const Filter = ({
         placeholder="Страна"
         optionFilterProp="label"
         onChange={selectCountry}
-        value={categories.country}
+        value={filters.country}
         options={genresAndCountries.countries.map((item) => {
           return {
             value: item.id,
@@ -121,7 +122,7 @@ export const Filter = ({
         placeholder="Год"
         optionFilterProp="label"
         onChange={selectYear}
-        value={categories.year}
+        value={filters.year}
         options={yearList.map((item) => {
           return {
             value: item.id,

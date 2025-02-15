@@ -52,5 +52,5 @@
   color: var(--text) !important;
 }
 .ant-select-selection-placeholder {
-  color: var(--text) !important;
+  color: var(--border) !important;
 }

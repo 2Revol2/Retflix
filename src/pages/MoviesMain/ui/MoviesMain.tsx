@@ -1,95 +1,34 @@
 import { observer } from "mobx-react-lite";
 import { movieStore } from "../../../shared/lib/store/MovieStore";
-import { useEffect, useState } from "react";
-import { SIDEBAR_MENU_BOTTOM } from "@/shared/const/menu";
-import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { Pagination, PaginationProps } from "antd";
 import { MoviesList } from "@/widgets/MoviesList/MoviesList";
 import s from "./MoviesMain.module.scss";
-import { MovieCategoryEnum } from "../../../shared/lib/store/MovieStore";
 import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
 import { Filter } from "@/features/Filter";
 import { Title } from "@/shared/ui/Title/Title";
-
+import { ORDER_LIST, YEAR_LIST } from "@/shared/const/constants";
+import { useMoviesFilters } from "@/shared/lib/hooks/useMoviesFilters";
 export const MoviesMain = observer(() => {
-  const { moviesData, filtersData, getFilmsAction, getFiltersAction } =
-    movieStore;
-  const location = useLocation();
-  const [page, setPage] = useState(1);
-  const [filters, setFilters] = useState<{
-    genre: null | number;
-    country: null | number;
-    order: string;
-    year: number | null;
-  }>({
-    genre: null,
-    country: null,
-    order: "NUM_VOTE",
-    year: null,
-  });
-
-  const orderList = [
-    { id: "RATING", value: "За рейтингом" },
-    { id: "NUM_VOTE", value: "По голосам" },
-  ];
-  const yearList = [...new Array(132)].map((_, index) => {
-    return {
-      id: new Date().getFullYear() - index,
-      year: new Date().getFullYear() - index,
-    };
-  });
+  const { moviesData, filtersData, getFiltersAction } = movieStore;
+  const { filters, setFilters, movieType } = useMoviesFilters();
 
   const category =
     filtersData?.state === "fulfilled"
       ? filtersData.value
       : { genres: [], countries: [] };
 
-  const movieType = SIDEBAR_MENU_BOTTOM.find(
-    (item) => item.url === location.pathname
-  );
-
   useEffect(() => {
     getFiltersAction();
   }, []);
 
-  const cartoonsId = movieType?.url === "/cartoon" ? 18 : filters.genre;
-
-  useEffect(() => {
-    getFilmsAction(
-      MovieCategoryEnum.Movies,
-      filters.country,
-      cartoonsId,
-      filters.year,
-      page,
-      filters.order,
-      movieType?.value
-    );
-  }, [
-    location.pathname,
-    movieType?.value,
-    page,
-    filters.genre,
-    filters.country,
-    filters.order,
-    filters.year
-  ]);
-
-  useEffect(() => {
-    setPage(1);
-    setFilters((prev) => ({ ...prev, genre: null, country: null }));
-  }, [location]);
-
   const paginationHandler: PaginationProps["onChange"] = (page) => {
-    setPage(page);
+    setFilters((prev) => ({ ...prev, page: page }));
   };
 
   return (
     <>
       <div style={{ textAlign: "center" }}>
-        {moviesData?.state === "pending" && (
-          <Skeleton count={20} type="category" />
-        )}
-
         {moviesData?.state === "fulfilled" &&
           moviesData.value.items.length === 0 && (
             <p style={{ fontSize: "32px", color: "var(--text)" }}>
@@ -102,13 +41,20 @@ export const MoviesMain = observer(() => {
         <Title>{movieType?.title}</Title>
         {filtersData?.state === "fulfilled" && (
           <Filter
-            yearList={yearList}
-            orderList={orderList}
-            categories={filters}
+            yearList={YEAR_LIST}
+            orderList={ORDER_LIST}
+            filters={filters}
             genresAndCountries={category}
             setFilters={setFilters}
           />
         )}
+
+        {moviesData?.state === "pending" && (
+          <div className={s.skeltonWrapper}>
+            <Skeleton count={20} type="category" />
+          </div>
+        )}
+
         {moviesData?.state === "fulfilled" &&
           moviesData.value.items.length > 0 && (
             <MoviesList movies={moviesData.value.items} />
@@ -119,7 +65,7 @@ export const MoviesMain = observer(() => {
           className={s.pagination}
           total={moviesData?.state === "fulfilled" ? moviesData.value.total : 0}
           hideOnSinglePage={true}
-          current={page}
+          current={filters.page}
           pageSize={20}
           responsive
           onChange={paginationHandler}

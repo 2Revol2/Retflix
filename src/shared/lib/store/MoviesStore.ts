@@ -20,7 +20,7 @@ export enum MovieCategoryEnum {
   Movies = "moviesData",
 }
 
-class MovieStore {
+class MoviesStore {
   constructor() {
     makeAutoObservable(this);
   }
@@ -76,4 +76,4 @@ class MovieStore {
     }
   };
 }
-export const movieStore = new MovieStore();
+export const moviesStore = new MoviesStore();

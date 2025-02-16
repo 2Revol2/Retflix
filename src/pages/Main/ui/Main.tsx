@@ -1,7 +1,7 @@
-import { movieStore } from "@/shared/lib/store/MovieStore";
+import { moviesStore } from "@/shared/lib/store/MoviesStore";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
-import { MovieCategoryEnum } from "@/shared/lib/store/MovieStore";
+import { MovieCategoryEnum } from "@/shared/lib/store/MoviesStore";
 import { SIDEBAR_MENU_BOTTOM, SIDEBAR_MENU_TOP } from "@/shared/const/menu";
 import s from "./Main.module.scss";
 import { Carousel } from "@/features/Carousel";
@@ -16,7 +16,7 @@ export const Main = observer(() => {
     filmsData,
     getMoviesCollectionsAction,
     getFilmsAction,
-  } = movieStore;
+  } = moviesStore;
 
   const moviesCollectionsData = [
     {

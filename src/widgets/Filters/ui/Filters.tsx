@@ -1,5 +1,5 @@
 import { Button, Select } from "antd";
-import s from "./Filter.module.scss";
+import s from "./Filters.module.scss";
 
 type FilterProps = {
   genresAndCountries: {
@@ -12,21 +12,6 @@ type FilterProps = {
       country: string;
     }[];
   };
-  setFilters: React.Dispatch<
-    React.SetStateAction<{
-      genre: null | number;
-      country: null | number;
-      order: string;
-      year: number | null;
-      page: number
-    }>
-  >;
-  filters: {
-    genre: null | number;
-    country: null | number;
-    order: string;
-    year: number | null;
-  };
   orderList: {
     id: string;
     value: string;
@@ -35,40 +20,32 @@ type FilterProps = {
     id: number;
     year: number;
   }[];
+
+  setFilters: React.Dispatch<
+    React.SetStateAction<{
+      genre: null | number;
+      country: null | number;
+      order: string;
+      year: number | null;
+      page: number;
+    }>
+  >;
+  filters: {
+    genre: null | number;
+    country: null | number;
+    order: string;
+    year: number | null;
+  };
 };
 
-export const Filter = ({
+export const Filters = ({
   genresAndCountries,
   setFilters,
   filters,
   orderList,
   yearList,
 }: FilterProps) => {
-  const selectGenre = (value: number) => {
-    setFilters((prev) => ({ ...prev, genre: value }));
-  };
-
-  const selectCountry = (value: number) => {
-    setFilters((prev) => ({ ...prev, country: value }));
-  };
-
-  const selectSort = (value: string) => {
-    setFilters((prev) => ({ ...prev, order: value }));
-  };
-
-  const selectYear = (value: number) => {
-    setFilters((prev) => ({ ...prev, year: value }));
-  };
-
-  const resetFilters = () => {
-    setFilters((prev) => ({
-      ...prev,
-      genre: null,
-      country: null,
-      order: "NUM_VOTE",
-      year: null,
-    }));
-  };
+  
   return (
     <div className={s.filters}>
       <Select
@@ -76,7 +53,9 @@ export const Filter = ({
         showSearch
         placeholder="Сортировка"
         optionFilterProp="label"
-        onChange={selectSort}
+        onChange={(value: string) => {
+          setFilters((prev) => ({ ...prev, order: value }));
+        }}
         value={filters.order}
         options={orderList.map((item) => {
           return {
@@ -85,13 +64,14 @@ export const Filter = ({
           };
         })}
       />
-
       <Select
         className={s.select}
         showSearch
         placeholder="Жанр"
         optionFilterProp="label"
-        onChange={selectGenre}
+        onChange={(value: number) => {
+          setFilters((prev) => ({ ...prev, genre: value }));
+        }}
         value={filters.genre}
         options={genresAndCountries.genres.map((item) => {
           return {
@@ -100,13 +80,14 @@ export const Filter = ({
           };
         })}
       />
-
       <Select
         className={s.select}
         showSearch
         placeholder="Страна"
         optionFilterProp="label"
-        onChange={selectCountry}
+        onChange={(value: number) => {
+          setFilters((prev) => ({ ...prev, country: value }));
+        }}
         value={filters.country}
         options={genresAndCountries.countries.map((item) => {
           return {
@@ -115,13 +96,14 @@ export const Filter = ({
           };
         })}
       />
-
       <Select
         className={s.select}
         showSearch
         placeholder="Год"
         optionFilterProp="label"
-        onChange={selectYear}
+        onChange={(value: number) => {
+          setFilters((prev) => ({ ...prev, year: value }));
+        }}
         value={filters.year}
         options={yearList.map((item) => {
           return {
@@ -130,8 +112,19 @@ export const Filter = ({
           };
         })}
       />
-
-      <Button color="default" variant="solid" onClick={resetFilters}>
+      <Button
+        color="default"
+        variant="solid"
+        onClick={() => {
+          setFilters((prev) => ({
+            ...prev,
+            genre: null,
+            country: null,
+            order: "NUM_VOTE",
+            year: null,
+          }));
+        }}
+      >
         Сборосить фильтры
       </Button>
     </div>

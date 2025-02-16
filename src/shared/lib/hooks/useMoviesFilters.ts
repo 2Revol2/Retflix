@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { MovieCategoryEnum, movieStore } from "../store/MovieStore";
+import { MovieCategoryEnum, moviesStore } from "../store/MoviesStore";
 import { SIDEBAR_MENU_BOTTOM } from "@/shared/const/menu";
 import { useLocation } from "react-router-dom";
 
 export const useMoviesFilters = () => {
-  const { getFilmsAction } = movieStore;
+  const { getFilmsAction } = moviesStore;
   const location = useLocation();
   const [filters, setFilters] = useState<{
     genre: null | number;
@@ -56,5 +56,5 @@ export const useMoviesFilters = () => {
     }));
   }, [location]);
 
-  return {filters, setFilters, movieType};
+  return { filters, setFilters, movieType };
 };

@@ -1,16 +1,16 @@
 import { observer } from "mobx-react-lite";
-import { movieStore } from "../../../shared/lib/store/MovieStore";
+import { moviesStore } from "../../../shared/lib/store/MoviesStore";
 import { useEffect } from "react";
 import { Pagination, PaginationProps } from "antd";
 import { MoviesList } from "@/widgets/MoviesList/MoviesList";
 import s from "./MoviesMain.module.scss";
 import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
-import { Filter } from "@/features/Filter";
+import { Filters } from "@/widgets/Filters";
 import { Title } from "@/shared/ui/Title/Title";
 import { ORDER_LIST, YEAR_LIST } from "@/shared/const/constants";
 import { useMoviesFilters } from "@/shared/lib/hooks/useMoviesFilters";
 export const MoviesMain = observer(() => {
-  const { moviesData, filtersData, getFiltersAction } = movieStore;
+  const { moviesData, filtersData, getFiltersAction } = moviesStore;
   const { filters, setFilters, movieType } = useMoviesFilters();
 
   const category =
@@ -40,7 +40,7 @@ export const MoviesMain = observer(() => {
       <div className={s.movieWrapper}>
         <Title>{movieType?.title}</Title>
         {filtersData?.state === "fulfilled" && (
-          <Filter
+          <Filters
             yearList={YEAR_LIST}
             orderList={ORDER_LIST}
             filters={filters}

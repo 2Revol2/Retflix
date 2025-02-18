@@ -7,11 +7,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BrowserRouter } from "react-router-dom";
 import { ErrorBoundary } from "./providers/ErrorBoundary";
+import { ConfigProvider } from "antd";
+import { config } from "./providers/AntDesign/antDesign.ts";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <ErrorBoundary>
-        <App />
+        <ConfigProvider theme={{ components: config }}>
+          <App />
+        </ConfigProvider>
       </ErrorBoundary>
     </BrowserRouter>
   </StrictMode>

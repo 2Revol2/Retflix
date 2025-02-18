@@ -5,6 +5,7 @@ import { movieStore } from "../store/movieStore";
 import { Col, Flex, Rate, Row } from "antd";
 import s from "./MovieDetail.module.scss";
 import { MovieInfo } from "../components/MovieInfo/MovieInfo";
+import { MovieRating } from "../components/MovieRating/MovieRating";
 
 export const MovieDetail = observer(() => {
   const { filmData, staffData, getFilmAction, getStaffAction } = movieStore;
@@ -50,74 +51,68 @@ export const MovieDetail = observer(() => {
                 <Row>
                   <Col xl={{ span: 18 }} sm={{ span: 24 }} xs={{ span: 24 }}>
                     <Row>
-                      <Col span={24}>
-                        <Flex vertical gap={10}>
-                          <MovieInfo
-                            info="Год:"
-                            movieInfo={filmData.value.year}
-                          />
-                          <MovieInfo
-                            info="Страна:"
-                            movieInfo={filmData.value.countries.map(
-                              (item) => item.country
-                            )}
-                          />
-                          <MovieInfo
-                            info="Жанр:"
-                            movieInfo={filmData.value.genres.map(
-                              (item) => item.genre
-                            )}
-                          />
-                          <MovieInfo
-                            info="Режиссёр:"
-                            movieInfo={staffData.value
-                              .filter((el) => el.professionText === "Режиссеры")
-                              .map((item) => item.nameRu)}
-                          />
-
-                          {filmData.value.filmLength && (
-                            <MovieInfo
-                              info="Продолжительность:"
-                              movieInfo={filmData.value.filmLength}
-                              filmLenght={"мин."}
-                            />
+                      <Flex vertical gap={10}>
+                        <MovieInfo
+                          info="Год:"
+                          movieInfo={filmData.value.year}
+                        />
+                        <MovieInfo
+                          info="Страна:"
+                          movieInfo={filmData.value.countries.map(
+                            (item) => item.country
                           )}
-                          <Row>
-                            <Col
-                              xl={{ span: 18 }}
-                              sm={{ span: 20 }}
-                              xs={{ span: 24 }}
-                            >
-                              <Flex vertical>
-                                <h5 className={s.info}>Описание:</h5>
-                                <p className={s.movieInfo}>
-                                  {filmData.value.description}
-                                </p>
-                              </Flex>
-                              <Row>
-                                <Col span={12}>
-                                  <Flex gap={20}>
-                                    <Flex gap={10} align="center">
-                                      <h5 className={s.kinopoisk}>
-                                        КиноПоиск:
-                                      </h5>
-                                      <p className={s.movieInfo}>
-                                        {filmData.value.ratingKinopoisk}
-                                      </p>
-                                    </Flex>
-                                    <Flex gap={10} align="center">
-                                      <h5 className={s.imdb}>IMDB:</h5>
-                                      <p className={s.movieInfo}>
-                                        {filmData.value.ratingImdb}
-                                      </p>
-                                    </Flex>
-                                  </Flex>
-                                </Col>
-                              </Row>
-                            </Col>
-                          </Row>
-                        </Flex>
-                      </Col>
+                        />
+                        <MovieInfo
+                          info="Жанр:"
+                          movieInfo={filmData.value.genres.map(
+                            (item) => item.genre
+                          )}
+                        />
+                        <MovieInfo
+                          info="Режиссёр:"
+                          movieInfo={staffData.value
+                            .filter((el) => el.professionText === "Режиссеры")
+                            .map((item) => item.nameRu)}
+                        />
+
+                        {filmData.value.filmLength ? (
+                          <MovieInfo
+                            info="Продолжительность:"
+                            movieInfo={filmData.value.filmLength}
+                            filmLenght={"мин."}
+                          />
+                        ) : null}
+                        <Row>
+                          <Col
+                            xl={{ span: 18 }}
+                            sm={{ span: 20 }}
+                            xs={{ span: 24 }}
+                          >
+                            <Flex vertical>
+                              <h5 className={s.info}>Описание:</h5>
+                              <p className={s.movieInfo}>
+                                {filmData.value.description}
+                              </p>
+                            </Flex>
+                            <Row>
+                              <Col span={12}>
+                                <Flex gap={20}>
+                                  <MovieRating
+                                    label="КиноПоиск:"
+                                    type="kinopoisk"
+                                    rating={filmData.value.ratingKinopoisk}
+                                  />
+                                  <MovieRating
+                                    label="IMDB:"
+                                    type="imdb"
+                                    rating={filmData.value.ratingImdb}
+                                  />
+                                </Flex>
+                              </Col>
+                            </Row>
+                          </Col>
+                        </Row>
+                      </Flex>
                     </Row>
                   </Col>
                   <Col>
@@ -125,7 +120,6 @@ export const MovieDetail = observer(() => {
                     <ul className={`${s.actors} ${s.movieInfo}`}>
                       {staffData.value
                         .filter((el) => el.professionText === "Актеры")
-
                         .map((item) => (
                           <li>{item.nameRu}</li>
                         ))}

@@ -22,7 +22,7 @@ export const MovieInfo = ({ info, movieInfo, filmLenght }: MovieInfoProps) => {
             })}
           </ul>
         ) : (
-          <p>{`${movieInfo} ${filmLenght}`}</p>
+          <p>{`${movieInfo} ${filmLenght ? filmLenght : ""}`}</p>
         )}
       </Col>
     </Row>

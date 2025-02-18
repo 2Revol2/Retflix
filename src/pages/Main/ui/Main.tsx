@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { MovieCategoryEnum } from "@/shared/lib/store/MoviesStore";
 import { SIDEBAR_MENU_BOTTOM, SIDEBAR_MENU_TOP } from "@/shared/const/menu";
 import s from "./Main.module.scss";
-import { Carousel } from "@/features/Carousel";
+import { Carousel } from "@/widgets/Carousel";
 import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
 
 const Main = observer(() => {

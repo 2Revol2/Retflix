@@ -7,7 +7,7 @@ import s from "./Main.module.scss";
 import { Carousel } from "@/features/Carousel";
 import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
 
-export const Main = observer(() => {
+const Main = observer(() => {
   const {
     popularMoviesData,
     bestMoviesData,
@@ -91,3 +91,4 @@ export const Main = observer(() => {
     </div>
   );
 });
+export default Main;

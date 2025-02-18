@@ -1,1 +1,2 @@
-export { ActorDetail } from "./ui/ActorDetail";
+import { ActorDetailAsync } from "./ui/ActorDetail.async";
+export { ActorDetailAsync as ActorDetail };

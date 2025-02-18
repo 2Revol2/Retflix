@@ -9,7 +9,7 @@ import { Filters } from "@/widgets/Filters";
 import { Title } from "@/shared/ui/Title/Title";
 import { ORDER_LIST, YEAR_LIST } from "@/shared/const/constants";
 import { useMoviesFilters } from "@/shared/lib/hooks/useMoviesFilters";
-export const MoviesMain = observer(() => {
+const MoviesMain = observer(() => {
   const { moviesData, filtersData, getFiltersAction } = moviesStore;
   const { filters, setFilters, movieType } = useMoviesFilters();
 
@@ -74,3 +74,4 @@ export const MoviesMain = observer(() => {
     </>
   );
 });
+export default MoviesMain

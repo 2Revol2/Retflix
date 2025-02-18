@@ -1,1 +1,3 @@
-export { MovieCategory } from "./ui/MovieCategory";
+import { MovieCategoryAsync } from "./ui/MovieCategory.async";
+
+export { MovieCategoryAsync as MovieCategory };

@@ -6,8 +6,7 @@ import { Col, Flex, Rate, Row } from "antd";
 import s from "./MovieDetail.module.scss";
 import { MovieInfo } from "../components/MovieInfo/MovieInfo";
 import { MovieRating } from "../components/MovieRating/MovieRating";
-
-export const MovieDetail = observer(() => {
+const MovieDetail = observer(() => {
   const { filmData, staffData, getFilmAction, getStaffAction } = movieStore;
   const { id } = useParams();
 
@@ -137,3 +136,4 @@ export const MovieDetail = observer(() => {
     </div>
   );
 });
+export default MovieDetail;

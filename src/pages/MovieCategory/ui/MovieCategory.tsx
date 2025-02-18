@@ -9,7 +9,7 @@ import s from "./MovieCategory.module.scss";
 import { MovieCategoryEnum } from "../../../shared/lib/store/MoviesStore";
 import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
 import { Title } from "@/shared/ui/Title/Title";
-export const MovieCategory = observer(() => {
+const MovieCategory = observer(() => {
   const [page, setPage] = useState(1);
   const { movieCategoryData, getMoviesCollectionsAction } = moviesStore;
   const location = useLocation();
@@ -72,3 +72,4 @@ export const MovieCategory = observer(() => {
     </>
   );
 });
+export default MovieCategory;

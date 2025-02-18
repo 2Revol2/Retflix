@@ -39,3 +39,4 @@ export const getFilms = async (
 export const getFilters = async () =>
   (await baseInstance.get<genresAndCountriesResponce>("v2.2/films/filters"))
     .data;
+

@@ -9,7 +9,6 @@
   color: var(--logo);
   font-size: 24px;
 }
-
 .info {
   font-size: 18px;
   color: var(--title);
@@ -19,7 +18,14 @@
   font-size: 14px;
   color: var(--border);
 }
+
 .actors {
-    overflow-y: auto;
-    height: 300px;
+  overflow-y: auto;
+  height: 300px;
+}
+.kinopoisk {
+  color: var(--hover);
+}
+.imdb {
+  color: var(--logo);
 }

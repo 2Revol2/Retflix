@@ -4,14 +4,10 @@ import { useEffect } from "react";
 import { movieStore } from "../store/movieStore";
 import { Col, Flex, Rate, Row } from "antd";
 import s from "./MovieDetail.module.scss";
+import { MovieInfo } from "../components/MovieInfo/MovieInfo";
 
 export const MovieDetail = observer(() => {
-  const {
-    filmData,
-    staffData,
-    getFilmAction,
-    getStaffAction,
-  } = movieStore;
+  const { filmData, staffData, getFilmAction, getStaffAction } = movieStore;
   const { id } = useParams();
 
   useEffect(() => {
@@ -56,78 +52,36 @@ export const MovieDetail = observer(() => {
                     <Row>
                       <Col span={24}>
                         <Flex vertical gap={10}>
-                          <Row align={"middle"}>
-                            <Col span={12}>
-                              <h5 className={s.info}>Год:</h5>
-                            </Col>
-                            <Col span={12}>
-                              <p className={s.movieInfo}>
-                                {filmData.value.year}
-                              </p>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col span={12}>
-                              <h5 className={s.info}>Страна:</h5>
-                            </Col>
-                            <Col span={12}>
-                              <ul className={s.movieInfo}>
-                                {filmData.value.countries.map((item, index) => (
-                                  <li key={index}>{item.country}</li>
-                                ))}
-                              </ul>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col span={12}>
-                              <h5 className={s.info}>Жанр:</h5>
-                            </Col>
-                            <Col span={12}>
-                              <ul className={s.movieInfo}>
-                                {filmData.value.genres.map((item, index) => (
-                                  <li key={index}>{item.genre}</li>
-                                ))}
-                              </ul>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col span={12}>
-                              <h5 className={s.info}>Режиссёр:</h5>
-                            </Col>
-                            <Col span={12}>
-                              <ul className={s.movieInfo}>
-                                {staffData.value
-                                  .filter(
-                                    (el) => el.professionText === "Режиссеры"
-                                  )
-                                  .map((item) => (
-                                    <li>{item.nameRu}</li>
-                                  ))}
-                              </ul>
-                            </Col>
-                          </Row>
+                          <MovieInfo
+                            info="Год:"
+                            movieInfo={filmData.value.year}
+                          />
+                          <MovieInfo
+                            info="Страна:"
+                            movieInfo={filmData.value.countries.map(
+                              (item) => item.country
+                            )}
+                          />
+                          <MovieInfo
+                            info="Жанр:"
+                            movieInfo={filmData.value.genres.map(
+                              (item) => item.genre
+                            )}
+                          />
+                          <MovieInfo
+                            info="Режиссёр:"
+                            movieInfo={staffData.value
+                              .filter((el) => el.professionText === "Режиссеры")
+                              .map((item) => item.nameRu)}
+                          />
 
-                          {filmData.value.filmLength ? (
-                            <Row align={"middle"}>
-                              <Col
-                                xl={{ span: 12 }}
-                                sm={{ span: 16 }}
-                                xs={{ span: 18 }}
-                              >
-                                <h5 className={s.info}>Продолжительность:</h5>
-                              </Col>
-                              <Col
-                                xl={{ span: 12 }}
-                                sm={{ span: 8 }}
-                                xs={{ span: 6 }}
-                              >
-                                <p className={s.movieInfo}>
-                                  {filmData.value.filmLength} мин.
-                                </p>
-                              </Col>
-                            </Row>
-                          ) : null}
-
+                          {filmData.value.filmLength && (
+                            <MovieInfo
+                              info="Продолжительность:"
+                              movieInfo={filmData.value.filmLength}
+                              filmLenght={"мин."}
+                            />
+                          )}
                           <Row>
                             <Col
                               xl={{ span: 18 }}
@@ -144,7 +98,7 @@ export const MovieDetail = observer(() => {
                                 <Col span={12}>
                                   <Flex gap={20}>
                                     <Flex gap={10} align="center">
-                                      <h5 style={{ color: "var(--hover)" }}>
+                                      <h5 className={s.kinopoisk}>
                                         КиноПоиск:
                                       </h5>
                                       <p className={s.movieInfo}>
@@ -152,9 +106,7 @@ export const MovieDetail = observer(() => {
                                       </p>
                                     </Flex>
                                     <Flex gap={10} align="center">
-                                      <h5 style={{ color: "var(--logo)" }}>
-                                        IMDB:
-                                      </h5>
+                                      <h5 className={s.imdb}>IMDB:</h5>
                                       <p className={s.movieInfo}>
                                         {filmData.value.ratingImdb}
                                       </p>

@@ -1,4 +1,4 @@
-import { baseInstance } from "@/shared/api/base";
+import { baseInstance } from "../base";
 import { MovieDetail, SequelsAndPrequels, Staff } from "./types";
 
 export const getFilm = async (id: string | undefined) =>

@@ -13,7 +13,7 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <ErrorBoundary>
-        <ConfigProvider theme={{ components: config }}>
+        <ConfigProvider theme={config}>
           <App />
         </ConfigProvider>
       </ErrorBoundary>

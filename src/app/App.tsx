@@ -3,7 +3,7 @@ import { Sidebar } from "@/widgets/Sidebar";
 import { Layout } from "antd";
 import { Content } from "antd/es/layout/layout";
 import { useState } from "react";
-import { AppRouter } from "./providers/RouterProvider";
+import { AppRouter } from "./providers/routerProvider";
 export const App = () => {
   const [isOpen, setIsOpen] = useState(true);
   return (

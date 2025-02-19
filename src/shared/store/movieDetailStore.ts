@@ -1,13 +1,17 @@
 import { makeAutoObservable } from "mobx";
 import { fromPromise, IPromiseBasedObservable } from "mobx-utils";
-import { getFilm, getSequelsAndPrequels, getStaff } from "../api/movie";
-import { Movie, SequelsAndPrequels, Staff } from "../api/types";
+import {
+  getFilm,
+  getSequelsAndPrequels,
+  getStaff,
+} from "../api/movieDeatailApi/api";
+import { MovieDetail, SequelsAndPrequels, Staff } from "../api/movieDeatailApi/types";
 
-class MovieStore {
+class MovieDetailStore {
   constructor() {
     makeAutoObservable(this);
   }
-  filmData?: IPromiseBasedObservable<Movie>;
+  filmData?: IPromiseBasedObservable<MovieDetail>;
   sequelsAndPrequelsData?: IPromiseBasedObservable<SequelsAndPrequels[]>;
   staffData?: IPromiseBasedObservable<Staff[]>;
 
@@ -35,4 +39,4 @@ class MovieStore {
     }
   };
 }
-export const movieStore = new MovieStore();
+export const movieDetailStore = new MovieDetailStore();

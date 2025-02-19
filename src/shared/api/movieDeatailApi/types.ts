@@ -1,4 +1,4 @@
-export type Movie = {
+export type MovieDetail = {
   countries: { country: string }[];
   description: string;
   filmLength: number;

@@ -1,12 +1,12 @@
 import { observer } from "mobx-react-lite";
-import { moviesStore } from "../../../shared/lib/store/MoviesStore";
+import { moviesStore } from "../../../shared/store/MoviesStore";
 import { useEffect, useState } from "react";
 import { SIDEBAR_MENU_TOP } from "@/shared/const/menu";
 import { useLocation } from "react-router-dom";
 import { Pagination, PaginationProps } from "antd";
 import { MoviesList } from "@/widgets/MoviesList/MoviesList";
 import s from "./MovieCategory.module.scss";
-import { MovieCategoryEnum } from "../../../shared/lib/store/MoviesStore";
+import { MovieCategoryEnum } from "../../../shared/store/MoviesStore";
 import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
 import { Title } from "@/shared/ui/Title/Title";
 const MovieCategory = observer(() => {

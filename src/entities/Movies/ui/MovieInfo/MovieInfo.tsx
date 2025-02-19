@@ -10,7 +10,7 @@ type MovieInfoProps = {
 
 export const MovieInfo = ({ info, movieInfo, filmLenght }: MovieInfoProps) => {
   return (
-    <Row align={"middle"}>
+    <Row>
       <Col xl={{ span: 12 }} sm={{ span: 16 }} xs={{ span: 18 }}>
         <h5 className={s.info}>{info}</h5>
       </Col>

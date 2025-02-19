@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { moviesStore } from "../../../shared/lib/store/MoviesStore";
+import { moviesStore } from "../../../shared/store/MoviesStore";
 import { useEffect } from "react";
 import { Pagination, PaginationProps } from "antd";
 import { MoviesList } from "@/widgets/MoviesList/MoviesList";
@@ -74,4 +74,4 @@ const MoviesMain = observer(() => {
     </>
   );
 });
-export default MoviesMain
+export default MoviesMain;

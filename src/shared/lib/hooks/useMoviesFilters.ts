@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { MovieCategoryEnum, moviesStore } from "../store/MoviesStore";
+import { MovieCategoryEnum, moviesStore } from "../../store/MoviesStore";
 import { SIDEBAR_MENU_BOTTOM } from "@/shared/const/menu";
 import { useLocation } from "react-router-dom";
 

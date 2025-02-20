@@ -1,22 +1,37 @@
 import { observer } from "mobx-react-lite";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { movieDetailStore } from "../../../shared/store/movieDetailStore";
 import { Col, Row } from "antd";
 import s from "./MovieDetail.module.scss";
 import { MovieInfoBlock } from "@/widgets/MovieInfoBlock";
+import { MoviesCard } from "@/entities/Movies";
 const MovieDetail = observer(() => {
-  const { filmData, staffData, getFilmAction, getStaffAction } =
-    movieDetailStore;
+  
   const { id } = useParams();
+  const location = useLocation();
+
+  const {
+    filmData,
+    staffData,
+    sequelsAndPrequelsData,
+    getFilmAction,
+    getStaffAction,
+    getSequelsAndPrequelsAction,
+  } = movieDetailStore;
 
   useEffect(() => {
     if (id) {
       getFilmAction(id);
-      // getSequelsAndPrequelsAction(id);
+      getSequelsAndPrequelsAction(id);
       getStaffAction(id);
     }
-  }, [id]);
+  }, [id, location.pathname]);
+
+  const sequelsAndPrequelsDataResponse =
+    sequelsAndPrequelsData?.state === "fulfilled"
+      ? sequelsAndPrequelsData.value
+      : [];
 
   return (
     <div className={s.movieWrapper}>
@@ -53,7 +68,16 @@ const MovieDetail = observer(() => {
             </Row>
           </Col>
           <Col xl={{ span: 4 }} sm={{ span: 24 }} xs={{ span: 24 }}>
-            Сиквелы
+            {sequelsAndPrequelsDataResponse.length > 0 ? (
+              <>
+                <h3>Сиквелы и приквелы</h3>
+                <div className={s.sequelsAndPrequels}>
+                  {sequelsAndPrequelsDataResponse.map((item, index) => (
+                    <MoviesCard key={index} movie={item} />
+                  ))}
+                </div>
+              </>
+            ) : null}
           </Col>
         </Row>
       )}

@@ -1,0 +1,17 @@
+.movieCard {
+  text-align: center;
+  max-width: 15.625rem;
+  img {
+    max-width: 100%;
+    object-fit: cover;
+  }
+  h6 {
+    font-size: 16px;
+    color: var(--title);
+  }
+}
+@media (max-width: 1000px) {
+    .movieCard  {
+        width: 9.375rem;
+    }
+  }

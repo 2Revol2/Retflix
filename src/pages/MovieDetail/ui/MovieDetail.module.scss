@@ -18,8 +18,48 @@
   font-size: 14px;
   color: var(--border);
 }
+.sequelsAndPrequels {
+  height: calc(100vh - 6.875rem);
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: .5rem;
+  }
 
+  &::-webkit-scrollbar-track {
+    background: var(--secondary-background); 
+    border-radius: .25rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--hover);
+    border-radius: .25rem;
+  }
+}
 .actors {
   overflow-y: auto;
-  height: 300px;
+  height: 18.75rem;
+  &::-webkit-scrollbar {
+    width: .375rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--secondary-background);
+    border-radius: .1875rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: .1875rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .sequelsAndPrequels {
+    display: flex;
+    gap: .625rem;
+    height: auto;
+    &::-webkit-scrollbar {
+      height: 0.25rem; 
+    }
+  }
 }

@@ -2,12 +2,12 @@ import { observer } from "mobx-react-lite";
 import { useLocation, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { movieDetailStore } from "../../../shared/store/movieDetailStore";
-import { Col, Row } from "antd";
+import { Col, Flex, Row } from "antd";
 import s from "./MovieDetail.module.scss";
 import { MovieInfoBlock } from "@/widgets/MovieInfoBlock";
 import { MoviesCard } from "@/entities/Movies";
+import { VideoPlayer } from "@/features/VideoPlayer";
 const MovieDetail = observer(() => {
-  
   const { id } = useParams();
   const location = useLocation();
 
@@ -65,8 +65,15 @@ const MovieDetail = observer(() => {
                   </Col>
                 </Row>
               </Col>
+              <Col xl={{ span: 20 }} sm={{ span: 24 }} xs={{ span: 24 }}>
+                <Flex vertical align="center">
+                  <h3 className={s.movieName}>Смотреть онлайн</h3>
+                  <VideoPlayer />
+                </Flex>
+              </Col>
             </Row>
           </Col>
+
           <Col xl={{ span: 4 }} sm={{ span: 24 }} xs={{ span: 24 }}>
             {sequelsAndPrequelsDataResponse.length > 0 ? (
               <>

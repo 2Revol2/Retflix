@@ -40,7 +40,7 @@ export const useMoviesFilters = () => {
     location.pathname,
     movieType?.value,
     filters.page,
-    filters.genre,
+    cartoonsId,
     filters.country,
     filters.order,
     filters.year,

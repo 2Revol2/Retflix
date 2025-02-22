@@ -1,5 +1,5 @@
 import s from "./MoviesCard.module.scss";
-import { SequelsAndPrequels } from "@/shared/api/movieDeatailApi/types";
+import { SequelsAndPrequels } from "@/shared/api/movieDetailApi/types";
 import { Link } from "react-router-dom";
 type MoviesCardProps = {
   movie: SequelsAndPrequels;

@@ -4,8 +4,12 @@ import {
   getFilm,
   getSequelsAndPrequels,
   getStaff,
-} from "../api/movieDeatailApi/api";
-import { MovieDetail, SequelsAndPrequels, Staff } from "../api/movieDeatailApi/types";
+} from "../api/movieDetailApi/api";
+import {
+  MovieDetail,
+  SequelsAndPrequels,
+  Staff,
+} from "../api/movieDetailApi/types";
 
 class MovieDetailStore {
   constructor() {

@@ -23,8 +23,15 @@ export const Search = observer(({ isSearchOpen }: SearchProps) => {
   const onChangeHandler = (value: string) => {
     setValue(value);
   };
-
-  const onSelect = (_:string, option: any) => {
+  
+  const onSelect = (
+    _: string,
+    option: {
+      value: string | null;
+      label: string | null;
+      id: number;
+    }
+  ) => {
     navigate(`movie/${option.id}`);
   };
 
@@ -40,7 +47,7 @@ export const Search = observer(({ isSearchOpen }: SearchProps) => {
               .map((movie) => ({
                 value: movie.nameRu ? movie.nameRu : movie.nameEn,
                 label: movie.nameRu ? movie.nameRu : movie.nameEn,
-                id: movie.kinopoiskId
+                id: movie.kinopoiskId,
               }))
           : []
       }

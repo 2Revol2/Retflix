@@ -1,7 +1,7 @@
 import { MovieInfo, MovieRating } from "@/entities/Movies";
 import { Col, Flex, Row } from "antd";
 import s from "./MovieInfoBlock.module.scss";
-import { MovieDetail, Staff } from "@/shared/api/movieDeatailApi/types";
+import { MovieDetail, Staff } from "@/shared/api/movieDetailApi/types";
 
 type MovieInfoBlock = {
   movieData: MovieDetail;

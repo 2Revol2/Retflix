@@ -6,7 +6,7 @@ import { Col, Flex, Row } from "antd";
 import s from "./MovieDetail.module.scss";
 import { MovieInfoBlock } from "@/widgets/MovieInfoBlock";
 import { MoviesCard } from "@/entities/Movies";
-import { VideoPlayer } from "@/features/VideoPlayer";
+import { VideoPlayer } from "@/widgets/VideoPlayer";
 const MovieDetail = observer(() => {
   const { id } = useParams();
   const location = useLocation();

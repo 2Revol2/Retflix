@@ -6,9 +6,10 @@ import {
 import {
   genresAndCountriesResponce,
   MoviesResponse,
-} from "@/shared/api/moviesApi/types";
+} from "@/shared/types/MoviesApi";
 import { makeAutoObservable } from "mobx";
 import { fromPromise, IPromiseBasedObservable } from "mobx-utils";
+import { getSearchQuery } from "../api/SearchQueryApi/api";
 
 export enum MovieCategoryEnum {
   General = "movieCategoryData",
@@ -37,6 +38,9 @@ class MoviesStore {
 
   // filters
   filtersData?: IPromiseBasedObservable<genresAndCountriesResponce>;
+
+  // search query
+  searchQueryData?: IPromiseBasedObservable<MoviesResponse>;
 
   getMoviesCollectionsAction = async (
     category: MovieCategoryEnum,
@@ -71,6 +75,32 @@ class MoviesStore {
   getFiltersAction = async () => {
     try {
       this.filtersData = fromPromise(getFilters());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  getSearchQueryAction = async (
+    countries: number | null,
+    genres: number | null,
+    year: number | null,
+    page: number,
+    keyword: string,
+    order?: string,
+    type?: string
+  ) => {
+    try {
+      this.searchQueryData = fromPromise(
+        getSearchQuery(
+          countries,
+          genres,
+          year,
+          page,
+          keyword,
+          order,
+          type
+        )
+      );
     } catch (error) {
       console.log(error);
     }

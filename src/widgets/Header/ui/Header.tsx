@@ -4,6 +4,7 @@ import { IoSearchSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { RiMenuFold4Fill, RiMenuFold3Fill } from "react-icons/ri";
 import { useState } from "react";
+import { Search } from "@/features/Search";
 type HeaderProps = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,7 +16,8 @@ export const Header = ({ isOpen, setIsOpen }: HeaderProps) => {
     <Layout.Header className={s.header}>
       <div className={s.mobileMenu}>
         {isOpen ? (
-          <RiMenuFold4Fill className={s.openIcon}
+          <RiMenuFold4Fill
+            className={s.openIcon}
             onClick={() => setIsOpen((prev) => !prev)}
             color="white"
             size={40}
@@ -28,14 +30,13 @@ export const Header = ({ isOpen, setIsOpen }: HeaderProps) => {
             className={s.openIcon}
           />
         )}
-
         <Link to="/">
           <h1 className={s.title}>Retflix</h1>
         </Link>
       </div>
 
       <div className={s.inputWrapper}>
-        <input className={`${s.search} ${isSearchOpen ? s.searchOpen : ''}`} type="text" placeholder="Поиск фильма" />
+        <Search isSearchOpen={isSearchOpen} />
         <div
           onClick={() => setIsSearchOpen((prev) => !prev)}
           className={s.iconWrapper}

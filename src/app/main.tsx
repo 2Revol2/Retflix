@@ -1,4 +1,3 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./App.tsx";
 import "./styles/index.css";
@@ -10,7 +9,7 @@ import { ErrorBoundary } from "./providers/ErrorBoundary";
 import { ConfigProvider } from "antd";
 import { config } from "./providers/AntDesign/antDesign.ts";
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
+
     <BrowserRouter>
       <ErrorBoundary>
         <ConfigProvider theme={config}>
@@ -18,5 +17,5 @@ createRoot(document.getElementById("root")!).render(
         </ConfigProvider>
       </ErrorBoundary>
     </BrowserRouter>
-  </StrictMode>
+
 );

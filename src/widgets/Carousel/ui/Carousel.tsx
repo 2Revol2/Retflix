@@ -1,4 +1,4 @@
-import { Movie } from "@/shared/api/moviesApi/types";
+import { Movie } from "@/shared/types/MoviesApi";
 import Slider from "react-slick";
 import s from "./Carousel.module.scss";
 import { Link } from "react-router-dom";
@@ -50,16 +50,12 @@ export const Carousel = ({ title, url, list }: CarouselProps) => {
         ]}
       >
         {list.map((item) => (
-            <div className={s.imageWrapper} key={item.kinopoiskId}>
-              <Link to={`/movie/${item.kinopoiskId}`}>
-                <img
-                  className={s.image}
-                  src={item.posterUrl}
-                  alt={item.nameRu}
-                />
-              </Link>
-            </div>
-          ))}
+          <div className={s.imageWrapper} key={item.kinopoiskId}>
+            <Link to={`/movie/${item.kinopoiskId}`}>
+              <img className={s.image} src={item.posterUrl} alt={item.nameRu} />
+            </Link>
+          </div>
+        ))}
       </Slider>
     </div>
   );

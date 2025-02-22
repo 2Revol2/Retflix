@@ -1,5 +1,8 @@
 import { baseInstance } from "../base";
-import { genresAndCountriesResponce, MoviesResponse } from "./types";
+import {
+  genresAndCountriesResponce,
+  MoviesResponse,
+} from "../../types/MoviesApi";
 
 export const getMoviesCollections = async (
   type: string | undefined,
@@ -39,4 +42,3 @@ export const getFilms = async (
 export const getFilters = async () =>
   (await baseInstance.get<genresAndCountriesResponce>("v2.2/films/filters"))
     .data;
-

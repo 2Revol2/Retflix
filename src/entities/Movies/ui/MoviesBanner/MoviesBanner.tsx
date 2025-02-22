@@ -1,4 +1,4 @@
-import { Movie } from "@/shared/api/moviesApi/types";
+import { Movie } from "@/shared/types/MoviesApi";
 import s from "./MoviesBanner.module.scss";
 import { Link } from "react-router-dom";
 import { Rate, Tooltip } from "antd";

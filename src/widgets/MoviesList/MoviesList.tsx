@@ -1,4 +1,4 @@
-import { Movie } from "@/shared/api/moviesApi/types";
+import { Movie } from "@/shared/types/MoviesApi";
 import s from "./MoviesList.module.scss";
 import { MoviesBanner } from "@/entities/Movies";
 

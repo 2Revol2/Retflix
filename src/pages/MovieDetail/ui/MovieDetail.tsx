@@ -35,55 +35,68 @@ const MovieDetail = observer(() => {
 
   return (
     <div className={s.movieWrapper}>
-      {filmData?.state === "fulfilled" && staffData?.state === "fulfilled" && (
+      {filmData?.state === "fulfilled" && (
         <Row>
-          <Col xl={{ span: 20 }} sm={{ span: 24 }} xs={{ span: 24 }}>
-            <h2 className={s.movieName}>{filmData.value.nameRu}</h2>
-            <Row gutter={[10, 10]}>
-              <Col xl={{ span: 5 }} sm={{ span: 8 }} xs={{ span: 24 }}>
+          <Col xl={{ span: 24 }} sm={{ span: 24 }} xs={{ span: 24 }}>
+            <h2 className={s.title}>{filmData.value.nameRu}</h2>
+            <Row gutter={[10, 10]} justify={"center"}>
+              <Col xl={{ span: 5 }} sm={{ span: 10 }} xs={{ span: 24 }}>
                 <img
                   className={s.image}
                   src={filmData.value.posterUrl}
                   alt={filmData.value.nameRu}
                 />
               </Col>
-              <Col xl={{ span: 19 }} sm={{ span: 16 }} xs={{ span: 24 }}>
+              <Col xl={{ span: 19 }} sm={{ span: 14 }}>
                 <Row>
                   <MovieInfoBlock
                     movieData={filmData.value}
-                    staffData={staffData.value}
+                    staffData={
+                      staffData?.state === "fulfilled" ? staffData.value : []
+                    }
                   />
-                  <Col>
-                    <h5 className={s.info}>Актеры</h5>
-                    <ul className={`${s.actors} ${s.movieInfo}`}>
-                      {staffData.value
-                        .filter((el) => el.professionText === "Актеры")
-                        .map((item, index) => (
-                          <li key={index}>{item.nameRu}</li>
-                        ))}
-                    </ul>
-                  </Col>
+                  {staffData?.state === "fulfilled" ? (
+                    <Col xl={{ span: 5 }} sm={{ span: 12 }}>
+                      <h5 className={s.info}>Актеры</h5>
+                      <ul className={`${s.actors} ${s.movieInfo}`}>
+                        {staffData.value
+                          .filter((el) => el.professionText === "Актеры")
+                          .map((item) => (
+                            <li key={item.staffId}>
+                              {item.nameRu ? item.nameRu : item.nameEn}
+                            </li>
+                          ))}
+                      </ul>
+                    </Col>
+                  ) : null}
                 </Row>
-              </Col>
-              <Col xl={{ span: 20 }} sm={{ span: 24 }} xs={{ span: 24 }}>
-                <Flex vertical align="center">
-                  <h3 className={s.movieName}>Смотреть онлайн</h3>
-                  <VideoPlayer />
-                </Flex>
               </Col>
             </Row>
           </Col>
 
-          <Col xl={{ span: 4 }} sm={{ span: 24 }} xs={{ span: 24 }}>
+          <Col span={24}>
+            <Flex vertical align="center" justify="center">
+              <h3 className={s.title}>Смотреть онлайн</h3>
+              <VideoPlayer />
+            </Flex>
+          </Col>
+
+          <Col span={24}>
             {sequelsAndPrequelsDataResponse.length > 0 ? (
-              <>
-                <h3>Сиквелы и приквелы</h3>
-                <div className={s.sequelsAndPrequels}>
+              <Flex vertical>
+                <h3 style={{ fontSize: 18 }}>Сиквелы и приквелы</h3>
+                <div
+                  className={
+                    sequelsAndPrequelsDataResponse.length > 3
+                      ? s.sequelsAndPrequels
+                      : s.sequelsAndPrequelsSmall
+                  }
+                >
                   {sequelsAndPrequelsDataResponse.map((item, index) => (
                     <MoviesCard key={index} movie={item} />
                   ))}
                 </div>
-              </>
+              </Flex>
             ) : null}
           </Col>
         </Row>

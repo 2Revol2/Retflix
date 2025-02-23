@@ -46,7 +46,7 @@ export const Search = observer(({ isSearchOpen }: SearchProps) => {
           ? searchQueryData.value.items
               .filter((movie) => movie.nameRu)
               .map((movie) => ({
-                value: movie.kinopoiskId,
+                value: String(movie.kinopoiskId),
                 label: `${movie.nameRu} - ${movie.year} ${
                   movieType[movie.type as keyof typeof movieType]
                 }`,

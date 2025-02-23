@@ -24,7 +24,7 @@ export const useMoviesFilters = () => {
     return SIDEBAR_MENU_BOTTOM.find((item) => item.url === location.pathname);
   }, [location.pathname]);
 
-  const cartoonsId = movieType?.url === "/cartoon" ? 18 : filters.genre;
+  const cartoonsId = movieType?.url === "/cartoons" ? 18 : filters.genre;
 
   useEffect(() => {
     getFilmsAction(

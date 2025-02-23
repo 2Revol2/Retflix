@@ -11,6 +11,7 @@ export type MovieDetail = {
   ratingKinopoisk: number;
   ratingImdb: number;
   year: number;
+  type: string;
 };
 
 export type SequelsAndPrequels = {

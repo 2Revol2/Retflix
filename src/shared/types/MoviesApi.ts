@@ -9,6 +9,7 @@ export type Movie = {
   ratingImdb: number | undefined;
   ratingKinopoisk: number | undefined;
   kinopoiskId: number;
+  type: string;
 };
 export type MoviesResponse = {
   total: number;

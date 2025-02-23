@@ -2,11 +2,12 @@ import { observer } from "mobx-react-lite";
 import { useLocation, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { movieDetailStore } from "../../../shared/store/movieDetailStore";
-import { Col, Flex, Row } from "antd";
+import { Col, Flex, Row, Spin } from "antd";
 import s from "./MovieDetail.module.scss";
 import { MovieInfoBlock } from "@/widgets/MovieInfoBlock";
 import { MoviesCard } from "@/entities/Movies";
 import { VideoPlayer } from "@/widgets/VideoPlayer";
+import { LoadingOutlined } from "@ant-design/icons";
 const MovieDetail = observer(() => {
   const { id } = useParams();
   const location = useLocation();
@@ -35,6 +36,15 @@ const MovieDetail = observer(() => {
 
   return (
     <div className={s.movieWrapper}>
+      {filmData?.state === "pending" &&
+        staffData?.state === "pending" &&
+        sequelsAndPrequelsData?.state === "pending" && (
+          <Flex justify="center" align="center">
+            <Spin
+              indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />}
+            />
+          </Flex>
+        )}
       {filmData?.state === "fulfilled" && (
         <Row>
           <Col xl={{ span: 24 }} sm={{ span: 24 }} xs={{ span: 24 }}>
@@ -47,7 +57,7 @@ const MovieDetail = observer(() => {
                   alt={filmData.value.nameRu}
                 />
               </Col>
-              <Col xl={{ span: 19 }} sm={{ span: 14 }}>
+              <Col xl={{ span: 19 }} sm={{ span: 14 }} xs={{ span: 24 }}>
                 <Row>
                   <MovieInfoBlock
                     movieData={filmData.value}
@@ -98,7 +108,7 @@ const MovieDetail = observer(() => {
                   className={
                     sequelsAndPrequelsDataResponse.length > 2
                       ? s.sequelsAndPrequels
-                      : ''
+                      : ""
                   }
                 >
                   {sequelsAndPrequelsDataResponse.map((item, index) => (

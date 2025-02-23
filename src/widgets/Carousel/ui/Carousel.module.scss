@@ -4,8 +4,8 @@
   width: 100%;
 }
 .title {
-  margin-top: 15px;
-  margin-bottom: 5px;
+  margin-top: .9375rem;
+  margin-bottom: .3125rem;
   font-size: 1.5rem;
   a {
     color: var(--title);
@@ -17,13 +17,13 @@
 }
 .image {
   width: 100%;
-  max-width: 240px;
+  max-width: 15rem;
   height: 100%;
   object-fit: cover;
 }
 .imageWrapper {
   transition: all 0.2s ease;
-  height: 350px;
+  height: 21.875rem;
   &:hover {
     transform: scale(1.05);
   }

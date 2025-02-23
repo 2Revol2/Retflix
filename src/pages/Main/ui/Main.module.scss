@@ -1,5 +1,5 @@
 .mainPage {
-  padding: 0 15px;
+  padding: 0 .9375rem;
 }
 
 .carouselWrapper {
@@ -20,13 +20,13 @@
 }
 .image {
   width: 100%;
-  max-width: 240px;
+  max-width: 15rem;
   height: 100%;
   object-fit: cover;
 }
 .imageWrapper {
   transition: all 0.2s ease;
-  height: 350px;
+  height: 21.875rem;
   &:hover {
     transform: scale(1.05);
   }

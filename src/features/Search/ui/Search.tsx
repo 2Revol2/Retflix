@@ -40,7 +40,7 @@ export const Search = observer(({ isSearchOpen }: SearchProps) => {
   return (
     <AutoComplete
       className={`${s.search} ${isSearchOpen ? s.searchOpen : ""}`}
-      placeholder="Search..."
+      placeholder="Поиск"
       options={
         searchQueryData?.state === "fulfilled"
           ? searchQueryData.value.items

@@ -8,18 +8,18 @@
 }
 .wrapper {
   min-height: 100vh;
-  background-color: #000000;
+  background-color: var(--background);
   overflow-x: hidden;
 }
 .contentWrapper {
-  background-color: #000000;
-  padding: 0 5px;
+  background-color: var(--background);
+  padding: 0 0.3125rem;
 }
 .content {
-  margin: 0 10px;
-  background-color: #101010;
-  padding: 10px;
-  border-radius: 5px;
+  margin: 0 0.625rem;
+  background-color: var(--secondary-background);
+  padding: 0.625rem;
+  border-radius: 0.3125rem;
   overflow: auto;
-  height: calc(100vh - 64px);
+  height: calc(100vh - 4rem);
 }

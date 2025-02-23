@@ -56,7 +56,7 @@ const MovieDetail = observer(() => {
                     }
                   />
                   {staffData?.state === "fulfilled" ? (
-                    <Col xl={{ span: 5 }} sm={{ span: 12 }}>
+                    <Col xl={{ span: 5 }} sm={{ span: 12 }} xs={{ span: 12 }}>
                       <h5 className={s.info}>Актеры</h5>
                       <ul className={`${s.actors} ${s.movieInfo}`}>
                         {staffData.value
@@ -84,12 +84,21 @@ const MovieDetail = observer(() => {
           <Col span={24}>
             {sequelsAndPrequelsDataResponse.length > 0 ? (
               <Flex vertical>
-                <h3 style={{ fontSize: 18 }}>Сиквелы и приквелы</h3>
+                <h3
+                  className={
+                    sequelsAndPrequelsDataResponse.length > 2
+                      ? s.sequelsTitle
+                      : ""
+                  }
+                  style={{ fontSize: 18 }}
+                >
+                  Сиквелы и приквелы
+                </h3>
                 <div
                   className={
-                    sequelsAndPrequelsDataResponse.length > 3
+                    sequelsAndPrequelsDataResponse.length > 2
                       ? s.sequelsAndPrequels
-                      : s.sequelsAndPrequelsSmall
+                      : ''
                   }
                 >
                   {sequelsAndPrequelsDataResponse.map((item, index) => (

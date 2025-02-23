@@ -18,7 +18,7 @@
   gap: 0.625rem;
 }
 .iconWrapper {
-  background-color: var(--secondary-background);
+  background-color: var(--icon-background);
   width: 2.5rem;
   height: 2.5rem;
   display: flex;
@@ -28,7 +28,7 @@
   transition: all 0.2s ease-in-out;
   padding: 0.125rem;
   cursor: pointer;
-  border: 0.0625rem solid var(--secondary-background);
+  border: 0.0625rem solid var(--icon-background);
   &:hover {
     border: 0.0625rem solid var(--hover);
   }

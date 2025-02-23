@@ -36,6 +36,9 @@
   }
 }
 
+.sequelsTitle {
+  text-align: center;
+}
 
 .sequelsAndPrequels {
   display: flex;
@@ -55,10 +58,4 @@
     background: var(--hover);
     border-radius: 0.25rem;
   }
-}
-.sequelsAndPrequelsSmall {
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  gap: 0.625rem;
 }

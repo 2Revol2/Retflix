@@ -7,6 +7,8 @@ const config = {
     colorTextQuaternary: "#e0e0e0",
     colorText: "#e0e0e0",
     colorBgElevated: "#1f1f1f",
+    colorLink: '#e0e0e0',
+    colorLinkHover: '#e50914'
   },
   components: {
     Pagination: {

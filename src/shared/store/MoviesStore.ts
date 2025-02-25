@@ -10,6 +10,8 @@ import {
 import { makeAutoObservable } from "mobx";
 import { fromPromise, IPromiseBasedObservable } from "mobx-utils";
 import { getSearchQuery } from "../api/SearchQueryApi/api";
+import { getActorById } from "../api/ActorDetailApi/api";
+import { Actor } from "../api/ActorDetailApi/types";
 
 export enum MovieCategoryEnum {
   General = "movieCategoryData",
@@ -42,6 +44,8 @@ class MoviesStore {
   // search query
   searchQueryData?: IPromiseBasedObservable<MoviesResponse>;
 
+  // actor
+  actorData?: IPromiseBasedObservable<Actor>;
   getMoviesCollectionsAction = async (
     category: MovieCategoryEnum,
     type: string | undefined,
@@ -91,19 +95,15 @@ class MoviesStore {
   ) => {
     try {
       this.searchQueryData = fromPromise(
-        getSearchQuery(
-          countries,
-          genres,
-          year,
-          page,
-          keyword,
-          order,
-          type
-        )
+        getSearchQuery(countries, genres, year, page, keyword, order, type)
       );
     } catch (error) {
       console.log(error);
     }
+  };
+
+  getActorByIdAction = async (id?: string) => {
+    this.actorData = fromPromise(getActorById(id));
   };
 }
 export const moviesStore = new MoviesStore();

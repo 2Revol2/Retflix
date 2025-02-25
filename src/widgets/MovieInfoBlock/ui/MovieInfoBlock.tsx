@@ -1,38 +1,47 @@
-import { MovieInfo, MovieRating } from "@/entities/Movies";
+import { MovieRating } from "@/entities/Movies";
 import { Col, Flex, Row } from "antd";
 import s from "./MovieInfoBlock.module.scss";
 import { MovieDetail, Staff } from "@/shared/api/movieDetailApi/types";
+import { ActorAndMovieInfo } from "@/entities/ActorAndMovieInfo";
 
 type MovieInfoBlock = {
   movieData: MovieDetail;
-  staffData: Staff[];
+  staffData: Staff[] | [];
 };
 export const MovieInfoBlock = ({ movieData, staffData }: MovieInfoBlock) => {
   return (
     <Col xl={{ span: 18 }} sm={{ span: 24 }} xs={{ span: 24 }}>
       <Row>
         <Flex vertical gap={10}>
-          <MovieInfo info="Год:" movieInfo={movieData.year} />
-          <MovieInfo
+          <ActorAndMovieInfo
+            type="movie"
+            info="Год:"
+            infoFromApi={movieData.year}
+          />
+          <ActorAndMovieInfo
+            type="movie"
             info="Страна:"
-            movieInfo={movieData.countries.map((item) => item.country)}
+            infoFromApi={movieData.countries.map((item) => item.country)}
           />
-          <MovieInfo
+          <ActorAndMovieInfo
+            type="movie"
             info="Жанр:"
-            movieInfo={movieData.genres.map((item) => item.genre)}
+            infoFromApi={movieData.genres.map((item) => item.genre)}
           />
-          <MovieInfo
+          <ActorAndMovieInfo
+            type="movie"
             info="Режиссёр:"
-            movieInfo={staffData
+            infoFromApi={staffData
               .filter((el) => el.professionText === "Режиссеры")
               .map((item) => item.nameRu)}
           />
 
           {movieData.filmLength ? (
-            <MovieInfo
+            <ActorAndMovieInfo
+              type="movie"
               info="Продолжительность:"
-              movieInfo={movieData.filmLength}
-              filmLenght={"мин."}
+              infoFromApi={movieData.filmLength}
+              moreInfo={"мин."}
             />
           ) : null}
           <Row>

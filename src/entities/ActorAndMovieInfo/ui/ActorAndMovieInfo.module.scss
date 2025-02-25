@@ -1,4 +1,4 @@
-.info {
+.movie {
   font-size: 1rem;
   color: var(--title);
   font-weight: bold;
@@ -6,4 +6,9 @@
 .movieInfo {
   font-size: .875rem;
   color: var(--border);
+}
+.actor {
+  font-size: 1rem;
+  color: var(--title);
+  font-weight: bold;
 }

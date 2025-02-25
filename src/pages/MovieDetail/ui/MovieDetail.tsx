@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { movieDetailStore } from "../../../shared/store/movieDetailStore";
 import { Col, Flex, Row, Spin } from "antd";
@@ -73,7 +73,9 @@ const MovieDetail = observer(() => {
                           .filter((el) => el.professionText === "Актеры")
                           .map((item) => (
                             <li key={item.staffId}>
-                              {item.nameRu ? item.nameRu : item.nameEn}
+                              <Link to={`/actor/${item.staffId}`}>
+                                {item.nameRu ? item.nameRu : item.nameEn}
+                              </Link>
                             </li>
                           ))}
                       </ul>

@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import s from "./SidebarMenuList.module.scss";
 import { JSX } from "react";
+import { Tooltip } from "antd";
 type SidebarMenuListProps = {
   List: {
     title: string;
@@ -27,7 +28,13 @@ export const SidebarMenuList = ({
             to={item.url}
           >
             <div className={isOpen ? s.linkWrapperOpen : s.linkWrapper}>
-              <span className={isOpen ? s.icon : ""}>{item.icon}</span>
+              {isOpen ? (
+                <Tooltip placement="rightBottom" title={item.title}>
+                  <span className={isOpen ? s.icon : ""}>{item.icon}</span>
+                </Tooltip>
+              ) : (
+                <span className={isOpen ? s.icon : ""}>{item.icon}</span>
+              )}
               <p>{!isOpen && item.title}</p>
             </div>
           </NavLink>

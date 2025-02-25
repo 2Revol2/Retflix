@@ -14,7 +14,10 @@ export const MoviesBanner = ({ movie }: MoviesBannerProps) => {
     <div className={s.cardWrapper}>
       <Link to={`/movie/${movie.kinopoiskId}`}>
         <div className={s.movieInfo}>
-          <img className={s.image} src={movie.posterUrl} alt={movie.nameRu} />
+          <div className={s.imageWrapper}>
+            <img className={s.image} src={movie.posterUrl} alt={movie.nameRu} />
+          </div>
+
           <h3 className={s.name}>{movie.nameRu}</h3>
         </div>
       </Link>

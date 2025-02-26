@@ -13,6 +13,7 @@
     "@ant-design/icons": "^5.6.1",
     "antd": "^5.23.4",
     "axios": "^1.7.9",
+    "framer-motion": "^12.4.7",
     "lodash.debounce": "^4.0.8",
     "mobx": "^6.13.6",
     "mobx-react-lite": "^4.1.0",

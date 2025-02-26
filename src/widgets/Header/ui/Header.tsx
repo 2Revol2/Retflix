@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { RiMenuFold4Fill, RiMenuFold3Fill } from "react-icons/ri";
 import { useState } from "react";
 import { Search } from "@/features/Search";
+import { motion } from "framer-motion";
 type HeaderProps = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,7 +15,17 @@ export const Header = ({ isOpen, setIsOpen }: HeaderProps) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   return (
     <Layout.Header className={s.header}>
-      <div className={s.mobileMenu}>
+      <motion.div
+       initial="hidden"
+       whileInView="visible"
+       viewport={{ once: true, amount: 0.5 }}
+       transition={{ duration: 0.5 }}
+       variants={{
+         hidden: { opacity: 0, y: -20 },
+         visible: { opacity: 1, y: 0 },
+       }}
+        className={s.mobileMenu}
+      >
         {isOpen ? (
           <RiMenuFold4Fill
             className={s.openIcon}
@@ -33,9 +44,19 @@ export const Header = ({ isOpen, setIsOpen }: HeaderProps) => {
         <Link to="/">
           <h1 className={s.title}>Retflix</h1>
         </Link>
-      </div>
+      </motion.div>
 
-      <div className={s.inputWrapper}>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.5 }}
+        variants={{
+          hidden: { opacity: 0, y: -20 },
+          visible: { opacity: 1, y: 0 },
+        }}
+        className={s.inputWrapper}
+      >
         <Search isSearchOpen={isSearchOpen} />
         <div
           onClick={() => setIsSearchOpen((prev) => !prev)}
@@ -43,7 +64,7 @@ export const Header = ({ isOpen, setIsOpen }: HeaderProps) => {
         >
           <IoSearchSharp className={s.searchIcon} />
         </div>
-      </div>
+      </motion.div>
     </Layout.Header>
   );
 };

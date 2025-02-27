@@ -24,6 +24,6 @@
 1. Получите API-ключ на сайте [https://kinopoiskapiunofficial.tech/](https://kinopoiskapiunofficial.tech/)
 2. npm install
 3. Создайте файл .env в корне проекта и добавьте:
-   VITE_KINOPOISK_API_KEY = "Ваш API ключ"
-   VITE_KINIPOISK_BASE_URL = https://kinopoiskapiunofficial.tech/api/
+   - VITE_KINOPOISK_API_KEY = "Ваш API ключ"
+   - VITE_KINIPOISK_BASE_URL = https://kinopoiskapiunofficial.tech/api/
 4. npm run dev

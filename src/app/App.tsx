@@ -4,6 +4,7 @@ import { Layout } from "antd";
 import { Content } from "antd/es/layout/layout";
 import { useState } from "react";
 import { AppRouter } from "./providers/routerProvider";
+import { ToastContainer } from "react-toastify";
 export const App = () => {
   const [isOpen, setIsOpen] = useState(true);
   return (
@@ -17,6 +18,7 @@ export const App = () => {
           </Content>
         </Layout>
       </Layout>
+      <ToastContainer/>
     </div>
   );
 };

@@ -29,7 +29,7 @@ export const VideoPlayer = () => {
         "Сервер выполняет редирект. Возможно, поможет включение или смена VPN.",
         {
           position: "top-right",
-          autoClose: 10000,
+          autoClose: false,
           hideProgressBar: false,
           closeOnClick: false,
           pauseOnHover: true,
@@ -45,9 +45,7 @@ export const VideoPlayer = () => {
     <>
       {error && (
         <Flex className={s.errorBlock} align="center" justify="center">
-          <p className={s.errorMessage}>
-            Произошла ошибка
-          </p>
+          <p className={s.errorMessage}>Произошла ошибка</p>
         </Flex>
       )}
 

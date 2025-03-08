@@ -11,7 +11,7 @@ import {
   Staff,
 } from "../api/movieDetailApi/types";
 
-class MovieDetailStore {
+export class MovieDetailStore {
   constructor() {
     makeAutoObservable(this);
   }
@@ -43,4 +43,4 @@ class MovieDetailStore {
     }
   };
 }
-export const movieDetailStore = new MovieDetailStore();
+

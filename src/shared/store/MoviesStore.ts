@@ -23,7 +23,7 @@ export enum MovieCategoryEnum {
   Movies = "moviesData",
 }
 
-class MoviesStore {
+export class MoviesStore {
   constructor() {
     makeAutoObservable(this);
   }
@@ -106,4 +106,4 @@ class MoviesStore {
     this.actorData = fromPromise(getActorById(id));
   };
 }
-export const moviesStore = new MoviesStore();
+

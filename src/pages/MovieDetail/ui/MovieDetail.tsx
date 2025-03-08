@@ -1,17 +1,17 @@
 import { observer } from "mobx-react-lite";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { movieDetailStore } from "../../../shared/store/movieDetailStore";
 import { Col, Flex, Row, Spin } from "antd";
 import s from "./MovieDetail.module.scss";
 import { MovieInfoBlock } from "@/widgets/MovieInfoBlock";
 import { MoviesCard } from "@/entities/Movies";
 import { VideoPlayer } from "@/widgets/VideoPlayer";
 import { LoadingOutlined } from "@ant-design/icons";
+import { useStore } from "@/app/providers/StoreContext";
 const MovieDetail = observer(() => {
   const { id } = useParams();
   const location = useLocation();
-
+  const {movieDetailStore} = useStore()
   const {
     filmData,
     staffData,

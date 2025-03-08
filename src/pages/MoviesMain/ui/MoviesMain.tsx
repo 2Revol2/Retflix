@@ -1,5 +1,4 @@
 import { observer } from "mobx-react-lite";
-import { moviesStore } from "../../../shared/store/MoviesStore";
 import { useEffect } from "react";
 import { Pagination, PaginationProps } from "antd";
 import { MoviesList } from "@/widgets/MoviesList/MoviesList";
@@ -9,7 +8,9 @@ import { Filters } from "@/widgets/Filters";
 import { Title } from "@/shared/ui/Title/Title";
 import { ORDER_LIST, YEAR_LIST } from "@/shared/const/constants";
 import { useMoviesFilters } from "@/shared/lib/hooks/useMoviesFilters";
+import { useStore } from "@/app/providers/StoreContext";
 const MoviesMain = observer(() => {
+  const { moviesStore } = useStore();
   const { moviesData, filtersData, getFiltersAction } = moviesStore;
   const { filters, setFilters, movieType } = useMoviesFilters();
 

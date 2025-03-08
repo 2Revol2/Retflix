@@ -1,5 +1,4 @@
 import { observer } from "mobx-react-lite";
-import { moviesStore } from "../../../shared/store/MoviesStore";
 import { useEffect, useState } from "react";
 import { SIDEBAR_MENU_TOP } from "@/shared/const/menu";
 import { useLocation } from "react-router-dom";
@@ -9,7 +8,9 @@ import s from "./MovieCategory.module.scss";
 import { MovieCategoryEnum } from "../../../shared/store/MoviesStore";
 import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
 import { Title } from "@/shared/ui/Title/Title";
+import { useStore } from "@/app/providers/StoreContext";
 const MovieCategory = observer(() => {
+    const {moviesStore} = useStore()
   const [page, setPage] = useState(1);
   const { movieCategoryData, getMoviesCollectionsAction } = moviesStore;
   const location = useLocation();

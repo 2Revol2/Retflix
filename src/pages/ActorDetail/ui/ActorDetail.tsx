@@ -1,4 +1,3 @@
-import { moviesStore } from "@/shared/store/MoviesStore";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Col, Flex, Row, Spin } from "antd";
 import { observer } from "mobx-react-lite";
@@ -7,8 +6,10 @@ import { Link, useParams } from "react-router-dom";
 import s from "./ActorDetail.module.scss";
 import { Title } from "@/shared/ui/Title/Title";
 import { ActorInfoBlock } from "@/widgets/ActorInfoBlock/ui/ActorInfoBlock";
+import { useStore } from "@/app/providers/StoreContext";
 
 const ActorDetail = observer(() => {
+  const { moviesStore } = useStore();
   const { actorData, getActorByIdAction } = moviesStore;
   const { id } = useParams();
 

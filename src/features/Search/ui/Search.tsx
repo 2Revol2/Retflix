@@ -2,9 +2,9 @@ import { AutoComplete } from "antd";
 import s from "./Search.module.scss";
 import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
-import { moviesStore } from "@/shared/store/MoviesStore";
 import { useDebounce } from "@/shared/lib/hooks/useDebounce";
 import { useNavigate } from "react-router-dom";
+import { useStore } from "@/app/providers/StoreContext";
 
 const movieType = {
   FILM: "Фильм",
@@ -19,6 +19,7 @@ type SearchProps = {
 };
 
 export const Search = observer(({ isSearchOpen }: SearchProps) => {
+  const {moviesStore} = useStore()
   const [value, setValue] = useState("");
   const { searchQueryData, getSearchQueryAction } = moviesStore;
   const debouncedKeyword = useDebounce(value, 1000);

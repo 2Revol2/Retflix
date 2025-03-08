@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
-import { MovieCategoryEnum, moviesStore } from "../../store/MoviesStore";
+import { MovieCategoryEnum } from "../../store/MoviesStore";
 import { SIDEBAR_MENU_BOTTOM } from "@/shared/const/menu";
 import { useLocation } from "react-router-dom";
+import { useStore } from "@/app/providers/StoreContext";
 
 export const useMoviesFilters = () => {
+  const { moviesStore } = useStore();
   const { getFilmsAction } = moviesStore;
   const location = useLocation();
   const [filters, setFilters] = useState<{

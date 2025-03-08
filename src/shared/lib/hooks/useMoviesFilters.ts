@@ -6,7 +6,6 @@ import { useStore } from "@/app/providers/StoreContext";
 
 export const useMoviesFilters = () => {
   const { moviesStore } = useStore();
-  const { getFilmsAction } = moviesStore;
   const location = useLocation();
   const [filters, setFilters] = useState<{
     genre: null | number;
@@ -29,7 +28,7 @@ export const useMoviesFilters = () => {
   const cartoonsId = movieType?.url === "/cartoons" ? 18 : filters.genre;
 
   useEffect(() => {
-    getFilmsAction(
+    moviesStore.getFilmsAction(
       MovieCategoryEnum.Movies,
       filters.country,
       cartoonsId,

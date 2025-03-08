@@ -21,13 +21,12 @@ type SearchProps = {
 export const Search = observer(({ isSearchOpen }: SearchProps) => {
   const {moviesStore} = useStore()
   const [value, setValue] = useState("");
-  const { searchQueryData, getSearchQueryAction } = moviesStore;
   const debouncedKeyword = useDebounce(value, 1000);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    getSearchQueryAction(
+    moviesStore.getSearchQueryAction(
       null,
       null,
       null,
@@ -43,8 +42,8 @@ export const Search = observer(({ isSearchOpen }: SearchProps) => {
       className={`${s.search} ${isSearchOpen ? s.searchOpen : ""}`}
       placeholder="Поиск"
       options={
-        searchQueryData?.state === "fulfilled"
-          ? searchQueryData.value.items
+        moviesStore.searchQueryData?.state === "fulfilled"
+          ?    moviesStore.searchQueryData.value.items
               .filter((movie) => movie.nameRu)
               .map((movie) => ({
                 value: String(movie.kinopoiskId),

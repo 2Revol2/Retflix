@@ -10,16 +10,15 @@ import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
 import { Title } from "@/shared/ui/Title/Title";
 import { useStore } from "@/app/providers/StoreContext";
 const MovieCategory = observer(() => {
-    const {moviesStore} = useStore()
+  const { moviesStore } = useStore();
   const [page, setPage] = useState(1);
-  const { movieCategoryData, getMoviesCollectionsAction } = moviesStore;
   const location = useLocation();
   const movieType = SIDEBAR_MENU_TOP.find(
     (item) => item.url === location.pathname
   );
 
   useEffect(() => {
-    getMoviesCollectionsAction(
+    moviesStore.getMoviesCollectionsAction(
       MovieCategoryEnum.General,
       movieType?.value,
       page
@@ -36,12 +35,12 @@ const MovieCategory = observer(() => {
   return (
     <>
       <div style={{ textAlign: "center" }}>
-        {movieCategoryData?.state === "pending" && (
+        {moviesStore.movieCategoryData?.state === "pending" && (
           <Skeleton count={20} type="category" />
         )}
 
-        {movieCategoryData?.state === "fulfilled" &&
-          movieCategoryData.value.items.length === 0 && (
+        {moviesStore.movieCategoryData?.state === "fulfilled" &&
+          moviesStore.movieCategoryData.value.items.length === 0 && (
             <p style={{ fontSize: "32px", color: "var(--text)" }}>
               Что-то пошло не так. Проблема в API
             </p>
@@ -50,17 +49,17 @@ const MovieCategory = observer(() => {
 
       <div className={s.movieWrapper}>
         <Title>{movieType?.title}</Title>
-        {movieCategoryData?.state === "fulfilled" &&
-          movieCategoryData.value.items.length > 0 && (
-            <MoviesList movies={movieCategoryData.value.items} />
+        {moviesStore.movieCategoryData?.state === "fulfilled" &&
+          moviesStore.movieCategoryData.value.items.length > 0 && (
+            <MoviesList movies={moviesStore.movieCategoryData.value.items} />
           )}
         <Pagination
           showQuickJumper={false}
           showSizeChanger={false}
           className={s.pagination}
           total={
-            movieCategoryData?.state === "fulfilled"
-              ? movieCategoryData.value.total
+            moviesStore.movieCategoryData?.state === "fulfilled"
+              ? moviesStore.movieCategoryData.value.total
               : 0
           }
           hideOnSinglePage={true}

@@ -11,16 +11,15 @@ import { useMoviesFilters } from "@/shared/lib/hooks/useMoviesFilters";
 import { useStore } from "@/app/providers/StoreContext";
 const MoviesMain = observer(() => {
   const { moviesStore } = useStore();
-  const { moviesData, filtersData, getFiltersAction } = moviesStore;
   const { filters, setFilters, movieType } = useMoviesFilters();
 
   const category =
-    filtersData?.state === "fulfilled"
-      ? filtersData.value
+  moviesStore.filtersData?.state === "fulfilled"
+      ? moviesStore.filtersData.value
       : { genres: [], countries: [] };
 
   useEffect(() => {
-    getFiltersAction();
+    moviesStore. getFiltersAction();
   }, []);
 
   const paginationHandler: PaginationProps["onChange"] = (page) => {
@@ -30,8 +29,8 @@ const MoviesMain = observer(() => {
   return (
     <>
       <div style={{ textAlign: "center" }}>
-        {moviesData?.state === "fulfilled" &&
-          moviesData.value.items.length === 0 && (
+        {moviesStore.moviesData?.state === "fulfilled" &&
+          moviesStore.moviesData.value.items.length === 0 && (
             <p style={{ fontSize: "32px", color: "var(--text)" }}>
               Что-то пошло не так. Проблема в API
             </p>
@@ -40,7 +39,7 @@ const MoviesMain = observer(() => {
 
       <div className={s.movieWrapper}>
         <Title>{movieType?.title}</Title>
-        {filtersData?.state === "fulfilled" && (
+        {moviesStore.filtersData?.state === "fulfilled" && (
           <Filters
             yearList={YEAR_LIST}
             orderList={ORDER_LIST}
@@ -50,21 +49,21 @@ const MoviesMain = observer(() => {
           />
         )}
 
-        {moviesData?.state === "pending" && (
+        {moviesStore.moviesData?.state === "pending" && (
           <div className={s.skeltonWrapper}>
             <Skeleton count={20} type="category" />
           </div>
         )}
 
-        {moviesData?.state === "fulfilled" &&
-          moviesData.value.items.length > 0 && (
-            <MoviesList movies={moviesData.value.items} />
+        {moviesStore.moviesData?.state === "fulfilled" &&
+          moviesStore.moviesData.value.items.length > 0 && (
+            <MoviesList movies={moviesStore.moviesData.value.items} />
           )}
         <Pagination
           showQuickJumper={false}
           showSizeChanger={false}
           className={s.pagination}
-          total={moviesData?.state === "fulfilled" ? moviesData.value.total : 0}
+          total={moviesStore.moviesData?.state === "fulfilled" ? moviesStore.moviesData.value.total : 0}
           hideOnSinglePage={true}
           current={filters.page}
           pageSize={20}

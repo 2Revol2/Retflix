@@ -12,64 +12,57 @@ const MovieDetail = observer(() => {
   const { id } = useParams();
   const location = useLocation();
   const {movieDetailStore} = useStore()
-  const {
-    filmData,
-    staffData,
-    sequelsAndPrequelsData,
-    getFilmAction,
-    getStaffAction,
-    getSequelsAndPrequelsAction,
-  } = movieDetailStore;
+
 
   useEffect(() => {
     if (id) {
-      getFilmAction(id);
-      getSequelsAndPrequelsAction(id);
-      getStaffAction(id);
+      movieDetailStore.getFilmAction(id);
+      movieDetailStore.getSequelsAndPrequelsAction(id);
+      movieDetailStore.getStaffAction(id);
     }
   }, [id, location.pathname]);
 
   const sequelsAndPrequelsDataResponse =
-    sequelsAndPrequelsData?.state === "fulfilled"
-      ? sequelsAndPrequelsData.value
+  movieDetailStore.sequelsAndPrequelsData?.state === "fulfilled"
+      ? movieDetailStore.sequelsAndPrequelsData.value
       : [];
 
   return (
     <div className={s.movieWrapper}>
-      {filmData?.state === "pending" &&
-        staffData?.state === "pending" &&
-        sequelsAndPrequelsData?.state === "pending" && (
+      {movieDetailStore.filmData?.state === "pending" &&
+        movieDetailStore.staffData?.state === "pending" &&
+        movieDetailStore.sequelsAndPrequelsData?.state === "pending" && (
           <Flex justify="center" align="center">
             <Spin
               indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />}
             />
           </Flex>
         )}
-      {filmData?.state === "fulfilled" && (
+      {movieDetailStore.filmData?.state === "fulfilled" && (
         <Row>
           <Col xl={{ span: 24 }} sm={{ span: 24 }} xs={{ span: 24 }}>
-            <h2 className={s.title}>{filmData.value.nameRu}</h2>
+            <h2 className={s.title}>{movieDetailStore.filmData.value.nameRu}</h2>
             <Row gutter={[10, 10]} justify={"center"}>
               <Col xl={{ span: 5 }} sm={{ span: 10 }} xs={{ span: 24 }}>
                 <img
                   className={s.image}
-                  src={filmData.value.posterUrl}
-                  alt={filmData.value.nameRu}
+                  src={movieDetailStore.filmData.value.posterUrl}
+                  alt={movieDetailStore.filmData.value.nameRu}
                 />
               </Col>
               <Col xl={{ span: 19 }} sm={{ span: 14 }} xs={{ span: 24 }}>
                 <Row>
                   <MovieInfoBlock
-                    movieData={filmData.value}
+                    movieData={movieDetailStore.filmData.value}
                     staffData={
-                      staffData?.state === "fulfilled" ? staffData.value : []
+                      movieDetailStore.staffData?.state === "fulfilled" ? movieDetailStore.staffData.value : []
                     }
                   />
-                  {staffData?.state === "fulfilled" ? (
+                  {movieDetailStore.staffData?.state === "fulfilled" ? (
                     <Col xl={{ span: 5 }} sm={{ span: 12 }} xs={{ span: 12 }}>
                       <h5 className={s.info}>Актеры</h5>
                       <ul className={`${s.actors} ${s.movieInfo}`}>
-                        {staffData.value
+                        {movieDetailStore.staffData.value
                           .filter((el) => el.professionText === "Актеры")
                           .map((item) => (
                             <li key={item.staffId}>

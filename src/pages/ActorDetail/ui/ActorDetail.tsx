@@ -10,22 +10,21 @@ import { useStore } from "@/app/providers/StoreContext";
 
 const ActorDetail = observer(() => {
   const { moviesStore } = useStore();
-  const { actorData, getActorByIdAction } = moviesStore;
   const { id } = useParams();
 
   useEffect(() => {
-    getActorByIdAction(id);
+    moviesStore.getActorByIdAction(id);
   }, []);
 
   return (
     <div className={s.actorWrapper}>
-      {actorData?.state === "pending" && (
+      {moviesStore.actorData?.state === "pending" && (
         <Flex justify="center" align="center">
           <Spin indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />} />
         </Flex>
       )}
 
-      {actorData?.state === "fulfilled" && (
+      {moviesStore.actorData?.state === "fulfilled" && (
         <>
           <Row>
             <Col xl={{ span: 24 }} sm={{ span: 24 }} xs={{ span: 24 }}>
@@ -33,16 +32,16 @@ const ActorDetail = observer(() => {
                 <Col xl={{ span: 5 }} sm={{ span: 10 }} xs={{ span: 24 }}>
                   <img
                     className={s.image}
-                    src={actorData.value.posterUrl}
-                    alt={actorData.value.nameRu}
+                    src={moviesStore.actorData.value.posterUrl}
+                    alt={moviesStore.actorData.value.nameRu}
                   />
                 </Col>
                 <Col xl={{ span: 19 }} sm={{ span: 14 }} xs={{ span: 24 }}>
                   <div className={s.infoBlock}>
-                    <Title>{actorData.value.nameRu}</Title>
-                    <h3>{actorData.value.nameEn}</h3>
+                    <Title>{moviesStore.actorData.value.nameRu}</Title>
+                    <h3>{moviesStore.actorData.value.nameEn}</h3>
                   </div>
-                  <ActorInfoBlock actorData={actorData.value} />
+                  <ActorInfoBlock actorData={moviesStore.actorData.value} />
                 </Col>
               </Row>
             </Col>
@@ -55,7 +54,7 @@ const ActorDetail = observer(() => {
                 <p className={s.title}>№</p>
                 <p className={s.title}>Рейтинг</p>
               </Flex>
-              {actorData.value.films.map((film, index) => {
+              {moviesStore.actorData.value.films.map((film, index) => {
                 return (
                   <Flex
                     align="center"

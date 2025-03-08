@@ -8,51 +8,42 @@ import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
 import { useStore } from "@/app/providers/StoreContext";
 
 const Main = observer(() => {
-  const {moviesStore} = useStore()
-  const {
-    popularMoviesData,
-    bestMoviesData,
-    cartoonsData,
-    serialData,
-    filmsData,
-    getMoviesCollectionsAction,
-    getFilmsAction,
-  } = moviesStore;
+  const { moviesStore } = useStore();
 
   const moviesCollectionsData = [
     {
       action: "getMoviesCollectionsAction",
       title: "Популярные фильмы",
       category: MovieCategoryEnum.Popular,
-      data: popularMoviesData,
+      data: moviesStore.popularMoviesData,
       menu: SIDEBAR_MENU_TOP[0],
     },
     {
       action: "getMoviesCollectionsAction",
       title: "Лучшие фильмы",
       category: MovieCategoryEnum.Best,
-      data: bestMoviesData,
+      data: moviesStore.bestMoviesData,
       menu: SIDEBAR_MENU_TOP[1],
     },
     {
       action: "getFilmsAction",
       title: "Фильмы",
       category: MovieCategoryEnum.Films,
-      data: filmsData,
+      data: moviesStore.filmsData,
       menu: SIDEBAR_MENU_BOTTOM[0],
     },
     {
       action: "getFilmsAction",
       title: "Сериалы",
       category: MovieCategoryEnum.Serials,
-      data: serialData,
+      data: moviesStore.serialData,
       menu: SIDEBAR_MENU_BOTTOM[1],
     },
     {
       action: "getFilmsAction",
       title: "Мультфильмы",
       category: MovieCategoryEnum.Cartoons,
-      data: cartoonsData,
+      data: moviesStore.cartoonsData,
       menu: SIDEBAR_MENU_BOTTOM[2],
     },
   ];
@@ -60,9 +51,13 @@ const Main = observer(() => {
   useEffect(() => {
     moviesCollectionsData.map((item) => {
       if (item.action === "getMoviesCollectionsAction") {
-        getMoviesCollectionsAction(item.category, item.menu.value, 1);
+        moviesStore.getMoviesCollectionsAction(
+          item.category,
+          item.menu.value,
+          1
+        );
       } else {
-        getFilmsAction(
+        moviesStore.getFilmsAction(
           item.category,
           null,
           item.category === MovieCategoryEnum.Cartoons ? 18 : null,
